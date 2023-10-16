@@ -217,28 +217,23 @@ section .title::after{
     background: #00D1D1;
 }
 
+
 /* Apply styles to the entire experience section */
 .experience {
     background-color: black;
     color: white;
+    padding: 20px; /* Add padding to create a box around the content */
 }
 
-/* Style the "Java Development Internship" text */
-.text {
+/* Style the "Internship Experience" title */
+.title {
     font-size: 24px;
-    animation: scrollText 5s linear infinite;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow to make it visible */
+    background-color: white;
+    color: black; /* Set the background and text color for the title */
+    padding: 10px; /* Add padding to create a box around the title */
+    display: inline-block; /* Make the title inline-block to fit inside its box */
 }
 
-/* Define the keyframes for scrolling animation */
-@keyframes scrollText {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
 
 
 /* about section styling */
