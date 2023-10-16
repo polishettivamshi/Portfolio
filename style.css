@@ -220,13 +220,14 @@ section .title::after{
 /* Apply styles to the entire experience section */
 .experience {
     background-color: black;
-    color:white;
+    color: white;
 }
 
 /* Style the "Java Development Internship" text */
 .text {
     font-size: 24px;
     animation: scrollText 5s linear infinite;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow to make it visible */
 }
 
 /* Define the keyframes for scrolling animation */
