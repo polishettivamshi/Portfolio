@@ -218,50 +218,8 @@ section .title::after{
 }
 
 
-/* Apply styles to the body and HTML to ensure full viewport coverage */
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
 
-/* Create a flex container for centering the section */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-/* Apply styles to the entire experience section */
-.experience {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* Style the "Java Development Internship" text */
-.text {
-    font-size: 24px;
-    animation: scrollText 5s linear infinite;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Style the "Internship Experience" title */
-.title {
-    color: white; /* Set the text color to white for the title */
-}
-
-/* Define the keyframes for scrolling animation */
-@keyframes scrollText {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
 
 
 /* about section styling */
