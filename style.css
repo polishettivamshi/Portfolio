@@ -217,6 +217,29 @@ section .title::after{
     background: #00D1D1;
 }
 
+/* Apply styles to the entire experience section */
+.experience {
+    background-color: white;
+    color: white;
+}
+
+/* Style the "Java Development Internship" text */
+.text {
+    font-size: 24px;
+    animation: scrollText 5s linear infinite;
+}
+
+/* Define the keyframes for scrolling animation */
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
 /* about section styling */
 .about h2{
 	font-weight: 700;
