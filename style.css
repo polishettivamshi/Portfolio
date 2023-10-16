@@ -220,7 +220,7 @@ section .title::after{
 /* Apply styles to the entire experience section */
 .experience {
     background-color: white;
-    color: white;
+    color: black;
 }
 
 /* Style the "Java Development Internship" text */
