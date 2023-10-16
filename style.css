@@ -38,7 +38,6 @@ section{
 .about, .projects, .skills, .Education, .contact, footer{
     font-family: 'Poppins', sans-serif;
 }
-
 .about .about-content,
 .projects .proj-content,
 .skills .skills-content,
@@ -217,8 +216,46 @@ section .title::after{
     background: #00D1D1;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
+.experience {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: left;
+}
 
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h3 {
+    color: #444;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+p {
+    color: #555;
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Add additional CSS styles as needed */
 
 
 
@@ -274,7 +311,7 @@ section .title::after{
 .projects h2{
 	font-weight: 700;
 }
-.experience, .projects, .Education{
+.projects, .Education{
     color: #fff;
     background: #111;
 }
