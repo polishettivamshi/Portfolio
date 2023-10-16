@@ -38,6 +38,7 @@ section{
 .about, .projects, .skills, .Education, .contact, footer{
     font-family: 'Poppins', sans-serif;
 }
+.experience .experience-content,
 .about .about-content,
 .projects .proj-content,
 .skills .skills-content,
@@ -268,7 +269,7 @@ section .title::after{
 .projects h2{
 	font-weight: 700;
 }
-.projects, .Education{
+.experience, .projects, .Education{
     color: #fff;
     background: #111;
 }
