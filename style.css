@@ -219,7 +219,7 @@ section .title::after{
 
 /* Apply styles to the entire experience section */
 .experience {
-    background-color: white;
+    background-color: black;
     color: black;
 }
 
