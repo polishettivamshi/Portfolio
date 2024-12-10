@@ -222,12 +222,6 @@ body {
     padding: 0;
 }
 
-.experience {
-    background-color: #f0f0f0;
-    padding: 20px;
-    text-align: left;
-}
-
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -256,7 +250,99 @@ ul {
 }
 
 /* Add additional CSS styles as needed */
+.title {
+    text-align: center; /* Centers the title */
+    font-size: 2rem; /* Adjust the size of the title */
+    margin-bottom: 20px; /* Adds some space below the title */
+}
 
+.experience {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Reduced gap for compressed spacing */
+    margin: 0 auto; /* Centering the section horizontally */
+    max-width: 1200px; /* Optional: Adjusts max width for better responsiveness */
+    padding: 10px;
+    justify-content: center; /* Centers content vertically if it's inside a parent with set height */
+    align-items: center; /* Centers content horizontally */
+    text-align: center; /* Optional: Centers text within each element */
+}
+
+.job-item {
+    display: flex;
+    gap: 10px; /* Reduced gap between logo and job info */
+    padding: 15px;
+    padding-left: 10px; /* Added more space on the left */
+    padding-right: 10px; /* Added more space on the right */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd; /* Compressed border width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+    margin: 2px 0; /* Slightly reduced margin to compress space between items */
+    justify-content: space-between; /* Space between logo and job info */
+    width: 100%; /* Ensures the items take full width available */
+    max-width: 3500px; /* Optional: Set a maximum width for job items */
+}
+
+.company-logo img {
+    width: 40px; /* Smaller size for the company logo */
+    height: 40px; /* Smaller size for the company logo */
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Reduced gap between text elements */
+    flex-grow: 1; /* Allows job-info to take available space */
+    text-align: left; /* Align text to the left */
+    margin-left: 10px; /* Add some space between logo and job info */
+}
+
+.job-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.company-name, .duration, .location {
+    font-size: 1em;
+    color: #272727;
+}
+
+.skills {
+    font-size: 1em;
+    color: #030303;
+    /* font-weight: bold; */
+}
+
+.description {
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+.job-info p {
+    margin: 5px 0;
+}
+
+.job-info .skills, .job-info .description {
+    margin-top: 10px;
+}
+
+.job-item:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb; /* Darker border color on hover */
+    cursor: pointer;
+}
+
+.job-title {
+    color: #0066cc;
+}
 
 
 /* about section styling */
