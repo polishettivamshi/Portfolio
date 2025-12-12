@@ -1,46 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6633100438556373"
-		crossorigin="anonymous"></script>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6633100438556373"
-		crossorigin="anonymous"></script>
-	<meta name="google-adsense-account" content="ca-pub-6633100438556373">
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE = edge">
-	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vamshi Polishetti</title>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<!-- Simplified fonts for local testing -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap"
+		rel="stylesheet">
 
-	<link rel="icon" href="./images/Portfolio_icon.jpeg" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+	<!-- Essential scripts (use CDN for now) -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+	<script src="./style.js"></script>
+
+	<!-- Essential CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<link rel="stylesheet" href="./style.css">
-	<title>Personal Portfolio Website</title>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6633100438556373"
-		crossorigin="anonymous"></script>
+	<link rel="icon" href="./images/Portfolio_icon.jpeg">
 </head>
 
 <body>
+	<!-- Progress bar removed for simplicity -->
+
 	<div class="scroll-up-btn">
-		<i class="fas fa-angle-up"></i>
+		<i class="fas fa-arrow-up"></i>
 	</div>
+
 	<nav class="navbar">
 		<div class="max-width">
-			<div class="logo"><a href="#">Port<span>folio</span></a></div>
+			<div class="logo"><a href="#">Portfolio</a></div>
 			<ul class="menu">
 				<li><a href="#home" class="menu-btn">Home</a></li>
 				<li><a href="#experience" class="menu-btn">Experience</a></li>
 				<li><a href="#about" class="menu-btn">About</a></li>
 				<li><a href="#projects" class="menu-btn">Projects</a></li>
 				<li><a href="#skills" class="menu-btn">Skills</a></li>
-				<li><a href="#Education" class="menu-btn">Education</a></li>
-				<li><a href="#contact" class="menu-btn">Contact</a></li>
+				<li><a href="#certificates" class="menu-btn">Certificates</a></li>
+				<li><a href="#education" class="menu-btn">Education</a></li>
+				<li><a href="#contact" class="menu-btn highlight-contact"><i class="fas fa-comment-dots"></i>
+						Contact</a></li>
 			</ul>
 			<div class="menu-btn">
 				<i class="fas fa-bars"></i>
@@ -48,311 +51,637 @@
 		</div>
 	</nav>
 
-	<!-- home section start -->
 	<section class="home" id="home">
 		<div class="max-width">
 			<div class="home-content">
-				<div class="text-1">My name is</div>
-				<div class="text-2">Polishetti Vamshi</div>
-				<div class="text-3">And I'm a <span class="typing"></span></div>
-				<a href="images/Vamshi_Polishetti_Resume.pdf" download>DOWNLOAD RESUME</a>
+				<div class="text-1">Hello, I am</div>
+				<div class="text-2">Vamshi Polishetti</div>
+				<div class="text-3">And I'm an <span class="typing"></span></div>
+				<div class="cta-buttons">
+					<a href="./images/Vamshi_Polishetti_Resume.pdf" class="cta-button" download>
+						<i class="fas fa-download"></i> DOWNLOAD RESUME
+					</a>
+					<a href="#contact" class="cta-button secondary">
+						<i class="fas fa-paper-plane"></i> HIRE ME
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>
-	<section class="experience" id="experience"></section>
-	<h2 class="title">Experience</h2>
-	<div class="container">
-		<div class="experience">
-			<!-- Job Item 1 -->
-			<div class="job-item">
-				<div class="company-logo">
-					<img src="images/cstoreiq_logo.jpg" alt="CStoreiQ">
-				</div>
-				<div class="job-info">
-					<h3 class="job-title">Junior Software Engineer</h3>
-					<p class="company-name"><b>CStoreiQ - Full-time</b></p>
-					<p class="duration">Feb 2024 - Present</p>
-					<p class="location">Hyderabad, Telangana, India - On-site</p>
-					<p class="skills"><b>Skills: </b>Python, FastAPI, Flask, SQLAlchemy ORM Models, JWT, API-KEY, Microsoft SQL Server, PostgreSQL, Git, Bitbucket, Elasticsearch, RabbitMQ, AWS, Agile Methodologies</p>
-				</div>
-			</div>
 
-			<!-- Job Item 2 -->
-			<div class="job-item">
-				<div class="company-logo">
-					<img src="images/saven_technologies_limited_india_logo.jpg" alt="Saven Technologies">
+	<section class="experience" id="experience">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-briefcase"></i> Experience</h2>
+			<div class="experience-list">
+				<div class="job-item">
+					<div class="company-logo">
+						<img src="./images/cstoreiq_logo.jpg" alt="CStoreiQ" onerror="this.style.display='none'">
+					</div>
+					<div class="job-info">
+						<h3 class="job-title">Junior Software Engineer</h3>
+						<p class="company-name"><b>CStoreiQ - Full Time</b></p>
+						<p class="duration">Feb 2024 - Present</p>
+						<p class="location">Hyderabad, Telangana, India - On-site</p>
+						<p class="skills">
+							<b>Skills: </b>
+							Python, FastAPI, Flask, SQLAlchemy ORM Models, JWT, API-KEY,
+							Microsoft SQL Server, PostgreSQL, Git, Bitbucket, Elasticsearch,
+							RabbitMQ, AWS, Agile Methodologies
+						</p>
+					</div>
 				</div>
-				<div class="job-info">
-					<h3 class="job-title">Internship Trainee</h3>
-					<p class="company-name"><b>Saven Technologies - Internship</b></p>
-					<p class="duration">Jan 2024 - Feb 2024</p>
-					<p class="location">Hyderabad, Telangana, India - On-site</p>
-					<p class="description">This is my internship based on DevOps trainee</p>
-					<p class="skills"><b>Skills: </b>Grafana, Git, Python, Prometheus, Postman API, MySQL, Node.js,
-						Elastic Stack (ELK)</p>
+
+				<div class="job-item">
+					<div class="company-logo">
+						<img src="./images/saven_technologies_limited_india_logo.jpg" alt="Saven Technologies"
+							onerror="this.style.display='none'">
+					</div>
+					<div class="job-info">
+						<h3 class="job-title">Internship Trainee</h3>
+						<p class="company-name"><b>Saven Technologies - Internship</b></p>
+						<p class="duration">Jan 2024 - Feb 2024</p>
+						<p class="location">Hyderabad, Telangana, India - On-site</p>
+						<p class="description">This is my internship based on DevOps trainee</p>
+						<p class="skills">
+							<b>Skills: </b>
+							Grafana, Git, Python, Prometheus, Postman API, MySQL, Node.js,
+							Elastic Stack (ELK)
+						</p>
+					</div>
 				</div>
-			</div>
 
-			<!-- Job Item 3 -->
-			<div class="job-item">
-				<div class="company-logo">
-					<img src="images/codeclause_logo.jpg" alt="CodeClause">
+				<div class="job-item">
+					<div class="company-logo">
+						<img src="./images/codeclause_logo.jpg" alt="CodeClause" onerror="this.style.display='none'">
+					</div>
+					<div class="job-info">
+						<h3 class="job-title">Java Development Internship</h3>
+						<p class="company-name"><b>CodeClause - Internship</b></p>
+						<p class="duration">Jun 2023 - Jul 2023</p>
+						<p class="location">Hyderabad, Telangana, India - Remote</p>
+						<p class="skills">
+							<b>Skills: </b>
+							Java Swing, SQL Database Administration, MySQL, Core Java,
+							Web Application Development
+						</p>
+					</div>
 				</div>
-				<div class="job-info">
-					<h3 class="job-title">Java Development Internship</h3>
-					<p class="company-name"><b>CodeClause - Internship</b></p>
-					<p class="duration">Jun 2023 - Jul 2023</p>
-					<p class="location">Hyderabad, Telangana, India - Remote</p>
-					<p class="skills"><b>Skills: </b>Java Swing, SQL Database Administration, MySQL, Core Java, Web
-						Application Development</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script src="./style.js"></script>
-</body>
-</html>
-
-<!-- about section start -->
-<section class="about" id="about">
-	<div class="max-width">
-		<h2 class="title">About Me</h2>
-		<div class="about-content">
-			<div class="column left">
-				<img src="images/vamshi.jpg" alt="">
-			</div>
-			<div class="column right">
-				<div class="text">I'm Vamshi and I'm a <span class="typing-2"></span></div>
-
-				<h1 class="summary"> Summary :</h1>
-
-				<p>
-				<ul>
-					<li>Developed and maintained scalable backend services using <strong>Python, FastAPI, and Flask</strong>, supporting high-performance production applications in an Agile environment.</li>
-					<li>Designed and managed <strong>SQLAlchemy ORM models</strong> with <strong>SQL Server and PostgreSQL</strong>, ensuring efficient and secure data handling.</li>
-					<li>Implemented secure authentication and authorization using <strong>JWT</strong> and <strong>API-Key based access control</strong>.</li>
-					<li>Resolved <strong>150+ JIRA issues</strong>, including critical bugs, feature enhancements, and performance optimizations, improving system reliability.</li>
-					<li>Successfully delivered <strong>two major API projects</strong> for the CStoreiQ back-office platform and live data integrations.</li>
-					<li>Integrated <strong>Elasticsearch</strong> for advanced search, logging, and monitoring, improving system observability and debugging efficiency.</li>
-					<li>Implemented asynchronous workflows using <strong>RabbitMQ</strong>, improving system scalability and data processing reliability.</li>
-					<li>Developed and optimized complex <strong>SQL stored procedures</strong>, resulting in improved API response times and database performance.</li>
-					<li>Deployed and managed backend services on <strong>AWS</strong>, ensuring scalable, secure, and highly available infrastructure.</li>
-				</ul>
-				</p>
-				<a href="#">Download CV</a>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<!-- project section start -->
-<section class="projects" id="projects">
-    <div class="max-width">
-        <h2 class="title">My Projects</h2>
-        <div class="proj-content">
+	<section class="about" id="about">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-user"></i> About Me</h2>
+			<div class="about-content">
+				<div class="column left">
+					<img src="./images/vamshi.jpg" alt="Polishetti Vamshi"
+						onerror="this.src='https://via.placeholder.com/350x450?text=Vamshi+Photo'">
+				</div>
+				<div class="column right">
+					<div class="text">I'm <strong>Vamshi</strong> and I'm an <span class="typing-2"></span></div>
+					<h3 class="summary-heading">Building Scalable Production ML Systems</h3>
 
-            <!-- Project 1: Real-Time COVID-19 Detection -->
-            <div class="card">
-                <div class="box">
-                    <div class="text">Detection of Covid-19 from Chest X-ray using Web Application</div>
-                    <ul>
-                        <li>Developed a web application to detect whether a chest X-ray image belongs to a COVID-19 patient with high accuracy.</li>
-                        <li>Used ResNet-50 model for image analysis and Streamlit for real-time frontend interaction.</li>
-                        <li>Processed each image in 5-10 seconds for fast, reliable results.</li>
-                        <li><strong>Technologies used:</strong> Python, Streamlit, ResNet-50.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Project 2: FastAPI Real-Time Backend -->
-            <div class="card">
-                <div class="box">
-                    <div class="text">Real-Time RESTful API Backend for E-commerce</div>
-                    <ul>
-                        <li>Developed a scalable RESTful API for e-commerce platform using FastAPI to handle products, orders, and user requests in real time.</li>
-                        <li>Implemented JWT-based authentication and role-based access control.</li>
-                        <li>Optimized SQLAlchemy queries with PostgreSQL to ensure fast and reliable database operations.</li>
-                        <li><strong>Technologies used:</strong> Python, FastAPI, PostgreSQL, SQLAlchemy, JWT.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Project 3: Real-Time Analytics Dashboard -->
-            <div class="card">
-                <div class="box">
-                    <div class="text">Real-Time Analytics Dashboard</div>
-                    <ul>
-                        <li>Developed a live dashboard to visualize key metrics from multiple data sources in real time.</li>
-                        <li>Integrated WebSocket for instant updates and used interactive charts with Dash and Plotly.</li>
-                        <li>Containerized the application with Docker for easy deployment and scalability.</li>
-                        <li><strong>Technologies used:</strong> Python, Dash, Plotly, WebSocket, Docker.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Project 4: Task Automation & Real-Time Data Sync -->
-            <div class="card">
-                <div class="box">
-                    <div class="text">Automated Data Processing and Real-Time Sync Tool</div>
-                    <ul>
-                        <li>Created a Python-based tool to fetch, clean, and sync data from multiple APIs in real time.</li>
-                        <li>Implemented logging, error handling, and automatic database updates to ensure reliable operation.</li>
-                        <li>Reduced manual intervention by 80% while maintaining data accuracy.</li>
-                        <li><strong>Technologies used:</strong> Python, Pandas, SQLAlchemy, SQL Server, RabbitMQ.</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- skills section start -->
-<section class="skills" id="skills">
-	<div class="max-width">
-		<h2 class="title">My Skills</h2>
-		<div class="skills-content">
-			<div class="column left">
-				<div class="text"> My Technical Skills: </div>
-				<ul>
-					<li><b>Programming Languages:</b> Core Java, Python.</li>
-					<li><b>Development Tools:</b> Eclipse IDE, NetBeans, Visual Studio Code.</li>
-					<li><b>Build Tools:</b> Apache Maven.</li>
-					<li><b>J2EE technologies:</b> JDBC, JSP, Servlets.</li>
-					<li><b>Web Development:</b> HTML, CSS, JavaScript, Bootstrap, XML.</li>
-					<li><b>Frameworks:</b> Spring, Spring Boot, Hibernate.</li>
-					<li><b>Testing:</b> Junit.</li>
-					<li><b>Databases:</b> SQL server, Oracle, MySQL.</li>
-					<li><b>APIs and Web Services:</b> FastAPI and Restful API.</li>
-					<li><b>Web/Application Server:</b> Apache Tomcat.</li>
-					<li><b>Software Methodologies:</b> SDLC, Agile/Scrum, V-Model, Waterfall.</li>
-					<li><b>Documentation:</b> Jira Confluence documentation, JavaDoc.</li>
-					<li><b>Operating System:</b> Windows.</li>
-				</ul>
-			
-				<div class="vertical"><br>
-					<div class="text">Personal Qualities:</div>
-					<ul>
-						<li>Strong problem-solving, analytical, and critical thinking skills.</li>
-						<li>Excellent attention to detail and passionate about work.</li>
-						<li>Ethical working nature.</li>
-						<li>Ability to work independently and as part of a team.</li>
-						<li>Fast learner and open to new technologies.</li>
-						<li>Effective at prioritizing tasks, meeting deadlines, and delivering high-quality work on time.</li>
+					<ul class="ai-summary-list">
+						<li><i class="fas fa-bolt"></i> <span>Developed and maintained scalable backend services using
+								<strong>Python, FastAPI, and Flask</strong>, supporting high-performance production
+								applications in an Agile environment.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Designed and managed <strong>SQLAlchemy ORM
+									models</strong> with <strong>SQL Server and PostgreSQL</strong>, ensuring efficient
+								and secure data handling.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Implemented secure authentication and authorization using
+								<strong>JWT</strong> and <strong>API-Key based access control</strong>.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Resolved <strong>150+ JIRA issues</strong>, including
+								critical bugs, feature enhancements, and performance optimizations, improving system
+								reliability.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Successfully delivered <strong>two major API
+									projects</strong> for the CStoreiQ back-office platform and live data
+								integrations.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Integrated <strong>Elasticsearch</strong> for advanced
+								search, logging, and monitoring, improving system observability and debugging
+								efficiency.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Implemented asynchronous workflows using
+								<strong>RabbitMQ</strong>, improving system scalability and data processing
+								reliability.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Developed and optimized complex <strong>SQL stored
+									procedures</strong>, resulting in improved API response times and database
+								performance.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Deployed and managed backend services on
+								<strong>AWS</strong>, ensuring scalable, secure, and highly available
+								infrastructure.</span></li>
+						<!-- New items added here -->
+						<li><i class="fas fa-bolt"></i> <span>Implemented <strong>Database Connection Pooling</strong> to optimize database performance and resource utilization in high-traffic production environments.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Developed <strong>Async Logging Systems</strong> for non-blocking application logging, improving application performance and debugging capabilities.</span></li>
+						<li><i class="fas fa-bolt"></i> <span>Configured and managed <strong>.env Configuration Management</strong> for secure handling of environment variables and application settings across different deployment stages.</span></li>
 					</ul>
-					<a href="#">Read more</a>
-				</div>
-			</div>			
-		</div>
-	</div>
-</section>
 
-<!-- Education section start -->
-<section class="Education" id="Education">
-	<div class="max-width">
-		<h2 class="title">My Education</h2>
-		<div class="carousel owl-carousel">
-			<div class="card">
-				<div class="box">
-
-					<div class="text">Dec 2020 - Sept 2022 <br> MCA <br> Telangana University, Nizamabad </div>
-					<p>CGPA - 8.87</p>
-				</div>
-			</div>
-			<div class="card">
-				<div class="box">
-
-					<div class="text">Jun 2017 - Sept 2020 <br> B.Sc(mscs) <br> Girraj Government College, Nizamabad
+					<div class="stats">
+						<div class="stat-item">
+							<span class="stat-number">150+</span>
+							<span class="stat-label">JIRA Issues Resolved</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-number">3+</span>
+							<span class="stat-label">Completed Projects</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-number">95%</span>
+							<span class="stat-label">Client Satisfaction</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-number">1.11+</span>
+							<span class="stat-label">Years of Experience</span>
+						</div>
 					</div>
-					<p>CGPA - 9.59</p>
-				</div>
-			</div>
-			<div class="card">
-				<div class="box">
-
-					<div class="text">Jun 2015 - Mar 2017 <br> Intermediate from MEC <br> Kshatriya Junior College,
-						Armoor, Nizamabad </div>
-					<p>GPA - 93%</p>
-				</div>
-			</div>
-			<div class="card">
-				<div class="box">
-
-					<div class="text">Jun 2014 - Mar 2015 <br> SSC <br> Vidya Jyothi High School, Raigir,
-						Yadadri-Bhuvanagiri </div>
-					<p>CGPA - 8.3</p>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<!-- contact section start -->
-<section class="contact" id="contact">
-	<div class="max-width">
-		<h2 class="title">Contact me</h2>
-		<div class="contact-content">
-			<div class="column left">
-				<div class="text">Get in touch with me</div>
-				<p>Below are my details, you can mail me on the below E-mail address or can directly message me by
-					entering the adjacent details : </p>
-				<div class="icons">
-					<div class="row">
-						<i class="fas fa-user"></i>
-						<div class="info">
-							<div class="head">Name</div>
-							<div class="sub-title">Polishetti vamshi</div>
+
+	<section class="projects" id="projects">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-code"></i> Projects</h2>
+			<div class="proj-content">
+				<!-- Project 1: Real-Time COVID-19 Detection -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-heartbeat"></i>
+						<div class="text">Detection of Covid-19 from Chest X-ray using Web Application</div>
+						<ul class="project-details-list">
+							<li>Developed a web application to detect whether a chest X-ray image belongs to a COVID-19 patient with <strong>high accuracy (97.5%+)</strong>.</li>
+							<li>Used <strong>ResNet-50</strong> model for image analysis and <strong>Streamlit</strong> for real-time frontend interaction.</li>
+							<li>Processed each image in <strong>5-10 seconds</strong> for fast, reliable results.</li>
+							<li><strong>Technologies:</strong> Python, Streamlit, ResNet-50, CNNs.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 2: FastAPI Real-Time Backend -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-server"></i>
+						<div class="text">Real-Time RESTful API Backend for E-commerce</div>
+						<ul class="project-details-list">
+							<li>Developed a scalable RESTful API for e-commerce platform using <strong>FastAPI</strong> to handle products, orders, and user requests in real time.</li>
+							<li>Implemented <strong>JWT-based authentication</strong> and role-based access control.</li>
+							<li>Optimized SQLAlchemy queries with PostgreSQL to ensure fast and reliable database operations.</li>
+							<li><strong>Technologies:</strong> Python, FastAPI, PostgreSQL, SQLAlchemy, JWT.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 3: Real-Time Analytics Dashboard -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-chart-line"></i>
+						<div class="text">Real-Time Analytics Dashboard</div>
+						<ul class="project-details-list">
+							<li>Developed a live dashboard to visualize key metrics from multiple data sources in real time.</li>
+							<li>Integrated <strong>WebSocket</strong> for instant updates and used interactive charts with <strong>Dash and Plotly</strong>.</li>
+							<li>Containerized the application with <strong>Docker</strong> for easy deployment and scalability.</li>
+							<li><strong>Technologies:</strong> Python, Dash, Plotly, WebSocket, Docker.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 4: Task Automation & Real-Time Data Sync -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-robot"></i>
+						<div class="text">Automated Data Processing and Real-Time Sync Tool</div>
+						<ul class="project-details-list">
+							<li>Developed a Python automation tool that <strong>reduced manual data processing by 80%</strong> through automated workflows.</li>
+							<li>Implemented <strong>scheduled Cron jobs</strong> to fetch, clean, and process data from multiple sources automatically.</li>
+							<li>Created <strong>real-time data synchronization</strong> between different systems using API integrations and database triggers.</li>
+							<li>Built <strong>comprehensive logging and error handling</strong> with automatic alerting for failed processes.</li>
+							<li>Designed <strong>data validation checks</strong> and quality assurance modules to ensure accuracy in automated processing.</li>
+							<li>Developed a <strong>monitoring dashboard</strong> to track automation status, success rates, and performance metrics.</li>
+							<li><strong>Technologies:</strong> Python, Cron Jobs, Pandas, SQLAlchemy, PostgreSQL, RabbitMQ, Logging, API Integration.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 5: Personal Portfolio Website (Current Project) -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-laptop-code"></i>
+						<div class="text">Personal Portfolio Website</div>
+						<ul class="project-details-list">
+							<li>Built a responsive portfolio website with modern UI/UX design to showcase professional profile.</li>
+							<li>Implemented interactive features using JavaScript/jQuery for enhanced user engagement.</li>
+							<li>Utilized HTML5 semantic markup and CSS3 Flexbox/Grid for structured, flexible layouts.</li>
+							<li>Added smooth animations, hover effects, and dynamic content loading.</li>
+							<li>Ensured cross-browser compatibility and mobile-first responsive design.</li>
+							<li>Integrated FontAwesome icons and Google Fonts for visual appeal and typography.</li>
+							<li><strong>Technologies:</strong> HTML5, CSS3, JavaScript, jQuery, Responsive Design.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 6: Django Weather API Integration -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-cloud-sun"></i>
+						<div class="text">Weather Dashboard API with External Integration</div>
+						<ul class="project-details-list">
+							<li>Developed a <strong>Django REST API</strong> integrating with multiple weather APIs (OpenWeatherMap, WeatherAPI) to provide unified weather data.</li>
+							<li>Implemented <strong>Redis caching</strong> and <strong>rate limiting</strong> to optimize performance and reduce external API costs by 40%.</li>
+							<li>Built <strong>user preference system</strong> for saving locations and customizing temperature units (Celsius/Fahrenheit).</li>
+							<li>Created <strong>historical weather endpoints</strong> with date filtering and data aggregation for trend analysis.</li>
+							<li>Added <strong>webhook notifications</strong> for severe weather alerts and automated daily forecast emails using Celery.</li>
+							<li><strong>Technologies:</strong> Python, Django, Django REST Framework, Redis, Celery, OpenWeatherMap API, PostgreSQL, Docker.</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section class="skills" id="skills">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-cogs"></i> Technical Skills</h2>
+
+			<!-- Use the same structure as Projects section -->
+			<div class="skills-content">
+				<div class="skills-grid">
+					<div class="skill-category">
+						<div class="box">
+							<i class="fab fa-python"></i>
+							<h3>Python Stack</h3>
+							<ul class="skill-list">
+								<li>Python (Primary Language)</li>
+								<li>FastAPI, Flask, Django (Intermediate)</li>
+								<li>SQLAlchemy ORM</li>
+								<li>Database Connection Pooling</li>
+								<li>Async Logging Systems</li>
+								<li>.env Configuration Management</li>
+							</ul>
 						</div>
 					</div>
-					<div class="row">
-						<i class="fas fa-map-marker-alt"></i>
-						<div class="info">
-							<div class="head">Address</div>
-							<div class="sub-title">Bhongir,Yadadri-Bhuvanagiri,Telangana,India.</div>
+
+					<div class="skill-category">
+						<div class="box">
+							<i class="fas fa-database"></i>
+							<h3>Database & Backend</h3>
+							<ul class="skill-list">
+								<li>PostgreSQL, SQL Server</li>
+								<li>Elasticsearch</li>
+								<li>RabbitMQ (Messaging)</li>
+								<li>RESTful API Development</li>
+								<li>Database Optimization</li>
+							</ul>
 						</div>
 					</div>
-					<div class="row">
-						<i class="fas fa-envelope"></i>
-						<div class="info">
-							<div class="head">Email</div>
-							<div class="sub-title">polishettivamshi123@gmail.com</div>
+
+					<div class="skill-category">
+						<div class="box">
+							<i class="fas fa-shield-alt"></i>
+							<h3>Security & Cloud</h3>
+							<ul class="skill-list">
+								<li>JWT Authentication</li>
+								<li>API-Key Authentication</li>
+								<li>AWS (EC2, S3, Lambda, RDS)</li>
+								<li>AWS CloudWatch, Secrets Manager</li>
+								<li>Secure Configuration</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="skill-category">
+						<div class="box">
+							<i class="fas fa-code"></i>
+							<h3>Programming Languages</h3>
+							<ul class="skill-list">
+								<li>Python (Primary)</li>
+								<li>Java (Intermediate)</li>
+								<li>JavaScript (Intermediate)</li>
+								<li>HTML5/CSS3 (Intermediate)</li>
+								<li>SQL (Advanced)</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="skill-category">
+						<div class="box">
+							<i class="fas fa-tools"></i>
+							<h3>Development Tools</h3>
+							<ul class="skill-list">
+								<li>PyCharm, VS Code</li>
+								<li>Postman (API Testing)</li>
+								<li>DBeaver (Database GUI)</li>
+								<li>SQL Server Management Studio</li>
+								<li>Git & GitHub</li>
+								<li>Docker (Basic)</li>
+								<li>JIRA (Project Management)</li>
+								<li>Swagger/OpenAPI</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="skill-category">
+						<div class="box">
+							<i class="fas fa-tools"></i>
+							<h3>Best Practices</h3>
+							<ul class="skill-list">
+								<li>Production Deployment</li>
+								<li>Scalable Architecture</li>
+								<li>Performance Optimization</li>
+								<li>Code Maintainability</li>
+								<li>Application Monitoring</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="column right">
-				<div class="text">Message Me</div>
-				<form action="#">
-					<div class="fields">
-						<div class="field name">
-							<input type="text" placeholder="Name" required>
-						</div>
-						<div class="field email">
-							<input type="email" placeholder="Email" required>
-						</div>
+		</div>
+	</section>
+
+
+	<!-- Add Certificates Section -->
+	<section class="certificates" id="certificates">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-certificate"></i> Certifications</h2>
+			<div class="certificates-grid">
+				<div class="certificate-card">
+					<div class="certificate-header">
+						<i class="fab fa-python"></i>
+						<h3>Python</h3>
 					</div>
-					<div class="field">
-						<input type="text" placeholder="Subject" required>
+					<p class="certificate-issuer">HackerRank</p>
+					<div class="certificate-link">
+						<a href="https://www.hackerrank.com/certificates/your-certificate-id" target="_blank">
+							<i class="fas fa-external-link-alt"></i> View Certificate
+						</a>
 					</div>
-					<div class="field textarea">
-						<textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+				</div>
+
+				<div class="certificate-card">
+					<div class="certificate-header">
+						<i class="fas fa-network-wired"></i>
+						<h3>Rest API (Intermediate)</h3>
 					</div>
-					<div class="button-area">
-						<button type="submit">Send message</button>
+					<p class="certificate-issuer">HackerRank</p>
+					<div class="certificate-link">
+						<a href="https://www.hackerrank.com/certificates/386a59b076d2" target="_blank">
+							<i class="fas fa-external-link-alt"></i> View Certificate
+						</a>
 					</div>
-				</form>
+				</div>
+
+				<div class="certificate-card">
+					<div class="certificate-header">
+						<i class="fas fa-database"></i>
+						<h3>SQL (Advanced)</h3>
+					</div>
+					<p class="certificate-issuer">HackerRank</p>
+					<div class="certificate-link">
+						<a href="https://www.hackerrank.com/certificates/bd90b14662aa" target="_blank">
+							<i class="fas fa-external-link-alt"></i> View Certificate
+						</a>
+					</div>
+				</div>
+
+				<div class="certificate-card">
+					<div class="certificate-header">
+						<i class="fab fa-react"></i>
+						<h3>React (Basic)</h3>
+					</div>
+					<p class="certificate-issuer">HackerRank</p>
+					<div class="certificate-link">
+						<a href="https://www.hackerrank.com/certificates/db6af75d86e8" target="_blank">
+							<i class="fas fa-external-link-alt"></i> View Certificate
+						</a>
+					</div>
+				</div>
+
+				<div class="certificate-card">
+					<div class="certificate-header">
+						<i class="fas fa-cloud"></i>
+						<h3>AWS for Beginners</h3>
+					</div>
+					<p class="certificate-issuer">Great Learning</p>
+					<div class="certificate-link">
+						<a href="https://www.mygreatlearning.com/certificate/IPLOEXXA?referrer_code=GLGJ769FNNHTC"
+							target="_blank">
+							<i class="fas fa-external-link-alt"></i> View Certificate
+						</a>
+					</div>
+				</div>
+
+				<div class="certificate-card">
+					<div class="certificate-header">
+						<i class="fab fa-java"></i>
+						<h3>Java Programming</h3>
+					</div>
+					<p class="certificate-issuer">Great Learning</p>
+					<div class="certificate-link">
+						<a href="https://www.mygreatlearning.com/certificate/NRORKBLH?referrer_code=GLGJ769FNNHTC"
+							target="_blank">
+							<i class="fas fa-external-link-alt"></i> View Certificate
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<!-- footer section start -->
-<footer>
-	<span>Created By <a href="https://github.com/polishettivamshi">Polishetti Vamshi</a> | <span
-			class="far fa-copyright"></span> 2024 All rights reserved.</span>
-</footer>
+	<section class="education" id="education">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-graduation-cap"></i> My Education</h2>
+			<div class="education-content">
+				<!-- First Row -->
+				<div class="education-item">
+					<div class="edu-icon">
+						<i class="fas fa-university"></i>
+					</div>
+					<div class="edu-details">
+						<h3>MCA (Master of Computer Applications)</h3>
+						<p class="institution">Telangana University, Nizamabad</p>
+						<p class="duration">Dec 2020 - Sept 2022</p>
+						<p class="grade">CGPA: 8.87/10</p>
+					</div>
+				</div>
 
-<script src="./style.js"></script>
+				<!-- Second Row -->
+				<div class="education-item">
+					<div class="edu-icon">
+						<i class="fas fa-graduation-cap"></i>
+					</div>
+					<div class="edu-details">
+						<h3>B.Sc (MSCS)</h3>
+						<p class="institution">Girraj Government College, Nizamabad</p>
+						<p class="duration">Jun 2017 - Sept 2020</p>
+						<p class="grade">CGPA: 9.59/10</p>
+					</div>
+				</div>
+
+				<!-- Third Row -->
+				<div class="education-item">
+					<div class="edu-icon">
+						<i class="fas fa-school"></i>
+					</div>
+					<div class="edu-details">
+						<h3>Intermediate (MEC)</h3>
+						<p class="institution">Kshatriya Junior College, Armoor, Nizamabad</p>
+						<p class="duration">Jun 2015 - Mar 2017</p>
+						<p class="grade">Percentage: 93%</p>
+					</div>
+				</div>
+
+				<!-- fourth  Row - SSC moved here (under B.Sc) -->
+				<div class="education-item">
+					<div class="edu-icon">
+						<i class="fas fa-school"></i>
+					</div>
+					<div class="edu-details">
+						<h3>SSC</h3>
+						<p class="institution">Vidya Jyothi High School, Raigir, Yadadri-Bhuvanagiri</p>
+						<p class="duration">Jun 2014 - Mar 2015</p>
+						<p class="grade">CGPA: 8.3/10</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="contact highlight-section" id="contact">
+		<div class="max-width">
+			<h2 class="title"><i class="fas fa-envelope"></i> Contact Me
+				<span class="live-indicator">
+					<span class="status-dot"></span>
+					<span class="status-text">LIVE</span>
+				</span>
+			</h2>
+			<div class="contact-content">
+				<div class="column left">
+					<div class="text">
+						<h4>Get in touch:</h4>
+					</div>
+					<p>Currently seeking roles in Python Development, Backend Engineering, and API Development.
+						Available for new opportunities and collaborations:</p>
+					<div class="contact-info">
+						<div class="info-item">
+							<i class="fas fa-user"></i>
+							<div class="info-content">
+								<h4>Name</h4>
+								<p>Polishetti Vamshi</p>
+							</div>
+						</div>
+						<div class="info-item">
+							<i class="fas fa-map-marker-alt"></i>
+							<div class="info-content">
+								<h4>Location</h4>
+								<p>Hyderabad, Telangana, India</p>
+							</div>
+						</div>
+						<div class="info-item">
+							<i class="fas fa-envelope"></i>
+							<div class="info-content">
+								<h4>Email</h4>
+								<p>polishettivamshi123@gmail.com</p>
+							</div>
+						</div>
+						<div class="info-item">
+							<i class="fas fa-phone"></i>
+							<div class="info-content">
+								<h4>Phone</h4>
+								<p>+91 9000859695</p>
+							</div>
+						</div>
+					</div>
+					<div class="social-links">
+						<a href="https://www.linkedin.com/in/polishettivamshi/" class="social-link">
+							<i class="fab fa-linkedin"></i>
+						</a>
+						<a href="https://github.com/polishettivamshi" target="_blank" class="social-link">
+							<i class="fab fa-github"></i>
+						</a>
+						<a href="https://www.hackerrank.com/profile/polishettivamsh1" class="social-link">
+							<i class="fab fa-hackerrank"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="column right">
+					<div class="text">Send me a message</div>
+					<form action="https://formspree.io/f/mqkldpzq" method="POST" id="contact-form">
+						<div class="form-group">
+							<input type="text" name="name" placeholder="Your Name" required>
+						</div>
+						<div class="form-group">
+							<input type="email" name="email" placeholder="Your Email" required>
+						</div>
+						<div class="form-group">
+							<input type="text" name="subject" placeholder="Subject" required>
+						</div>
+						<div class="form-group">
+							<textarea name="message" placeholder="Your Message..." rows="5" required></textarea>
+						</div>
+						
+						<!-- These hidden fields improve Formspree functionality -->
+						<input type="hidden" name="_replyto" value="{{email}}">
+						<input type="hidden" name="_subject" value="Portfolio Contact: {{subject}}">
+						<input type="hidden" name="_format" value="plain">
+						
+						<button type="submit" class="submit-btn">
+							<i class="fas fa-paper-plane"></i> Send Message
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="max-width">
+			<div class="footer-content">
+				<!-- About Section - Now takes more space -->
+				<div class="footer-section footer-about">
+					<div class="logo">VAMSHI POLISHETTI</div>
+					<p>Python Developer specializing in backend systems, RESTful APIs, and database management. Building
+						scalable solutions with FastAPI, Flask, and AWS.</p>
+				</div>
+
+				<!-- Quick Links Section -->
+				<div class="footer-section footer-links">
+					<h3>Quick Navigation</h3>
+					<ul>
+						<li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+						<li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+						<li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+						<li><a href="#skills"><i class="fas fa-cogs"></i> Skills</a></li>
+						<li><a href="#certificates"><i class="fas fa-cogs"></i> Certificates</a></li>
+						<li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+						<li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<div class="footer-bottom-content">
+					<div class="copyright">
+						Engineered by <a href="https://www.linkedin.com/in/polishettivamshi/">Vamshi Polishetti</a> | ©
+						2024 AI Portfolio
+					</div>
+					<div class="portfolio-tag">
+						<span>Python Developer</span>
+						<span>Python Software Engineer</span>
+						<span>Backend Developer</span>
+						<span>Python API Developer</span>
+						<span>Python Automation Engineer</span>
+						<span>Application Developer</span>
+					</div>
+					<a href="#home" class="back-to-top">
+						<i class="fas fa-arrow-up"></i> Back to Top
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="./style.js"></script>
 </body>
 
 </html>
