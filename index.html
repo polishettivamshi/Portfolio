@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>Vamshi Polishetti</title>
 
 	<!-- Simplified fonts for local testing -->
@@ -31,6 +31,21 @@
 		<i class="fas fa-arrow-up"></i>
 	</div>
 
+
+	<!-- WhatsApp Float Button - ADD THIS RIGHT HERE -->
+	<div class="whatsapp-float">
+		<a href="https://wa.me/919000859695?text=Hello%20Vamshi%2C%0A%0AI'm%20contacting%20you%20regarding%20[Job%20Offer%2FProject%20Inquiry%2FGeneral%20Question].%20%0A%0AMy%20name%20is%20[Your%20Name].%20Could%20we%20chat%3F"
+			target="_blank" 
+			class="whatsapp-link"
+			aria-label="Chat on WhatsApp" 
+			data-tooltip="Message Vamshi on WhatsApp">
+			
+			<i class="fab fa-whatsapp"></i>
+			<span class="whatsapp-text">Chat Now</span>
+		</a>
+	</div>
+
+	<!-- Navigation -->
 	<nav class="navbar">
 		<div class="max-width">
 			<div class="logo"><a href="#">Portfolio</a></div>
@@ -605,29 +620,36 @@
 
 				<div class="column right">
 					<div class="text">Send me a message</div>
-					<form action="https://formspree.io/f/mqkldpzq" method="POST" id="contact-form">
-						<div class="form-group">
-							<input type="text" name="name" placeholder="Your Name" required>
-						</div>
-						<div class="form-group">
-							<input type="email" name="email" placeholder="Your Email" required>
-						</div>
-						<div class="form-group">
-							<input type="text" name="subject" placeholder="Subject" required>
-						</div>
-						<div class="form-group">
-							<textarea name="message" placeholder="Your Message..." rows="5" required></textarea>
-						</div>
-						
-						<!-- These hidden fields improve Formspree functionality -->
-						<input type="hidden" name="_replyto" value="{{email}}">
-						<input type="hidden" name="_subject" value="Portfolio Contact: {{subject}}">
-						<input type="hidden" name="_format" value="plain">
-						
-						<button type="submit" class="submit-btn">
-							<i class="fas fa-paper-plane"></i> Send Message
-						</button>
-					</form>
+
+					<div class="contact-form-alt">
+						<p class="form-instruction">
+							*Your privacy is ensured. Messages submitted here go directly to my personal inbox (polishettivamshi123@gmail.com).
+						</p>
+						<form id="contact-form" action="https://formsubmit.co/ajax/polishettivamshi123@gmail.com" method="POST"> 
+							<div class="form-group">
+								<input type="text" name="name" placeholder="Your Name" required> 
+							</div>
+							<div class="form-group">
+								<input type="email" name="email" placeholder="Your Email" required>
+							</div>
+							<div class="form-group">
+								<textarea name="message" placeholder="Your message..." rows="4" required></textarea>
+							</div>
+							
+							<input type="hidden" name="_subject" value="&#9993; NEW PORTFOLIO INQUIRY: Interested in Connecting">
+							
+							<input type="hidden" name="_template" value="table">
+							
+							<input type="hidden" name="_autoresponse" value="Thanks for reaching out! I'll get back to you soon.">
+
+							<button type="submit" class="compose-btn">
+								<i class="fas fa-paper-plane"></i> I'm ready to talk
+							</button>
+						</form>
+
+						<div id="form-status" class="compose-success" style="display: none;">
+							</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1042,6 +1042,31 @@ section {
     left: 100%;
 }
 
+/* Mobile responsiveness for Education section */
+@media (max-width: 768px) {
+    .education-content {
+        grid-template-columns: 1fr !important; /* Force single column */
+        gap: 20px;
+    }
+    
+    .education-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .edu-icon {
+        margin: 0 auto 15px;
+    }
+    
+    .edu-details h3 {
+        font-size: 1.2rem;
+    }
+    
+    .institution {
+        font-size: 1rem;
+    }
+}
 
 
 /* Contact Section */
@@ -1440,7 +1465,7 @@ footer::before {
 .social-link-footer {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(8, 7, 7, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1596,8 +1621,8 @@ footer::before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    footer {
-        padding: 40px 0 20px;
+    .footer-content {
+        align-items: center; /* Center all items horizontally */
     }
     
     .footer-content {
@@ -1666,6 +1691,112 @@ footer::before {
 .scroll-up-btn.show {
     opacity: 1;
 }
+
+
+/* Enhanced Button Hover Effect */
+.compose-btn {
+    /* Ensure a transition is set for smoothness */
+    transition: all 0.3s ease; 
+}
+
+.compose-btn:hover {
+    /* Subtle background glow */
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.8); /* Green glow */
+    /* Lift the button slightly */
+    transform: translateY(-2px); 
+}
+
+/* Example: Add a pulse animation to the icon (if you want constant signaling) */
+.compose-btn i.fa-paper-plane {
+    animation: pulse-icon 1.5s infinite;
+}
+
+@keyframes pulse-icon {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+/* Form instructions */
+.form-instruction {
+    font-size: 0.98rem;
+    color: #b0c4de; /* A subtle, light blue or gray */
+    margin-bottom: 15px;
+    padding: 0 5px;
+}
+
+
+/* --- WhatsApp Float Button Styles --- */
+
+.whatsapp-float {
+    /* Stick it to the bottom-right of the viewport */
+    position: fixed;
+    bottom: 85px; /* Adjust vertical position */
+    right: 32px; /* Adjust horizontal position */
+    z-index: 1000; /* Ensure it's above all other content */
+}
+
+.whatsapp-link {
+    /* Basic button styling */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: #25d366; /* WhatsApp Green */
+    color: white;
+    border-radius: 50px; 
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.whatsapp-link:hover {
+    background-color: #128c7e; /* Darker green on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.whatsapp-link .fab {
+    /* Icon styling */
+    font-size: 28px;
+    margin-right: 0; 
+    /* Ensure no residual text selection */
+    user-select: none; 
+    transition: margin-right 0.3s ease;
+}
+
+.whatsapp-link .whatsapp-text {
+    /* Text styling: hide by default and reveal on hover */
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease;
+    margin-left: 0;
+}
+
+.whatsapp-link:hover .whatsapp-text {
+    /* Reveal text on hover */
+    max-width: 200px; /* Adjust based on max text length */
+    opacity: 1;
+    margin-left: 8px; /* Space between icon and text */
+}
+
+/* Optional Waving Animation (for extra polish) */
+.whatsapp-link:hover .fab {
+    animation: wave 1.5s infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(5deg); }
+    30% { transform: rotate(-5deg); }
+    45% { transform: rotate(5deg); }
+    60% { transform: rotate(0deg); }
+}
+
 
 /* Responsive Design */
 @media (max-width: 992px) {
@@ -1780,4 +1911,229 @@ footer::before {
     width: 100%;
     height: auto;
     display: block;
+}
+
+
+
+/* ===== SIMPLE CONTACT SOLUTION ===== */
+
+.simple-contact {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Direct Email Section */
+.email-direct {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.direct-email-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.direct-email-header i {
+    color: #00D1D1;
+    font-size: 1.3rem;
+}
+
+.direct-email-header h4 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.email-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 209, 209, 0.15);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(0, 209, 209, 0.3);
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.email-btn:hover {
+    background: rgba(0, 209, 209, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 209, 209, 0.2);
+    border-color: #00D1D1;
+}
+
+.email-btn i {
+    color: #00D1D1;
+    font-size: 1.2rem;
+}
+
+.email-note {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    margin: 5px 0 0 0;
+    text-align: center;
+}
+
+/* Form Alternative */
+.contact-form-alt {
+    margin-top: 20px;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-header i {
+    color: #00D1D1;
+    font-size: 1.3rem;
+}
+
+.form-header h4 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Form Styles */
+#compose-form .form-group {
+    margin-bottom: 15px;
+}
+
+#compose-form input,
+#compose-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+#compose-form input::placeholder,
+#compose-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#compose-form input:focus,
+#compose-form textarea:focus {
+    outline: none;
+    border-color: #00D1D1;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.compose-btn {
+    width: 100%;
+    padding: 15px;
+    background: #25D366; /* WhatsApp green for consistency */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.compose-btn:hover {
+    background: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+}
+
+.compose-btn i {
+    font-size: 1.1rem;
+}
+
+/* Success Message */
+.compose-success {
+    margin-top: 15px;
+    padding: 12px 15px;
+    background: rgba(37, 211, 102, 0.1);
+    color: #25D366;
+    border-radius: 8px;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+    border-left: 4px solid #25D366;
+    display: none;
+}
+
+.compose-success i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .simple-contact {
+        padding: 20px;
+    }
+    
+    .email-btn {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .email-btn span {
+        word-break: break-all;
+        font-size: 0.85rem;
+    }
+    
+    #compose-form input,
+    #compose-form textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .compose-btn {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-contact {
+        padding: 15px;
+    }
+    
+    .direct-email-header,
+    .form-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    .email-btn {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .email-note {
+        font-size: 0.8rem;
+    }
 }

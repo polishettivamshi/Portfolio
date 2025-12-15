@@ -40,81 +40,134 @@ $(document).ready(function(){
         $('.menu-btn i').removeClass("active");
     });
     
-    // Home section typing - Smooth Professional
-    var typed = new Typed(".typing", {
-        strings: [
-            "Python Developer",
-            "Python Software Engineer",
-            "Backend Developer",
-            "Python API Developer",
-            "Automation Engineer",
-            "Application Developer"
-        ],
-        typeSpeed: 55,
-        backSpeed: 45,        // Smooth ratio: 0.82
-        backDelay: 600,       // Quick but smooth
-        startDelay: 300,
-        loop: true,
-        cursorChar: "│",      // Pipe cursor
-        smartBackspace: true,
-        showCursor: true,
-        // Simulate human typing rhythm
-        onTypingPaused: function(arrayPos, self) {
-            // Optional pause for natural rhythm
-        },
-        onTypingResumed: function(arrayPos, self) {
-            // Resume typing
-        }
-    });
-
-    // About typing - Different rhythm
-    if(document.querySelector('.typing-2')) {
-        var typed2 = new Typed(".typing-2", {
-            strings: [
-                "Python Developer",
-                "Python Software Engineer",
-                "Backend Developer",
-                "Python API Developer",
-                "Python Automation Engineer",
-                "Application Developer"
-            ],
-            typeSpeed: 52,
-            backSpeed: 42,
-            backDelay: 650,
-            startDelay: 350,
+    // NEW: Custom Typing Animation (Better performance and smoother)
+    function createTypingAnimation(selector, strings, options = {}) {
+        const element = document.querySelector(selector);
+        if (!element) return;
+        
+        const defaultOptions = {
+            typeSpeed: 60,
+            deleteSpeed: 40,
+            delayBetweenWords: 1500,
             loop: true,
-            cursorChar: "│",
-            smartBackspace: true,
-            showCursor: true
-        });
+            // cursor: '|',
+            // cursorBlinkSpeed: 500
+        };
+        
+        const config = { ...defaultOptions, ...options };
+        
+        let currentStringIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let isWaiting = false;
+        
+        function type() {
+            const currentString = strings[currentStringIndex];
+            
+            if (isDeleting) {
+                // Deleting text
+                element.textContent = currentString.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+            } else {
+                // Typing text
+                element.textContent = currentString.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+            }
+            
+            // Calculate typing speed
+            let typeSpeed = config.typeSpeed;
+            
+            if (isDeleting) {
+                typeSpeed = config.deleteSpeed;
+            }
+            
+            // When word is complete
+            if (!isDeleting && currentCharIndex === currentString.length) {
+                // Wait before deleting
+                isWaiting = true;
+                setTimeout(() => {
+                    isWaiting = false;
+                    isDeleting = true;
+                    type();
+                }, config.delayBetweenWords);
+                return;
+            }
+            
+            // When word is deleted
+            if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                currentStringIndex = (currentStringIndex + 1) % strings.length;
+            }
+            
+            if (!isWaiting) {
+                setTimeout(type, typeSpeed);
+            }
+        }
+        
+        // Add blinking cursor
+        function addCursor() {
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            cursor.textContent = config.cursor;
+            cursor.style.opacity = '1';
+            
+            // Insert cursor after the typing element
+            element.parentNode.insertBefore(cursor, element.nextSibling);
+            
+            // Blink cursor
+            let cursorVisible = true;
+            setInterval(() => {
+                cursorVisible = !cursorVisible;
+                cursor.style.opacity = cursorVisible ? '1' : '0';
+            }, config.cursorBlinkSpeed);
+        }
+        
+        // Start typing
+        setTimeout(type, 1000);
+        addCursor();
     }
-
-    // Add smooth scrolling effect to cursor
-    setInterval(() => {
-        const cursors = document.querySelectorAll('.typed-cursor');
-        cursors.forEach(cursor => {
-            cursor.style.transition = 'all 0.1s ease';
-        });
-    }, 100);
     
-    // Form submission
-    $('#contact-form').submit(function(e){
-        e.preventDefault();
-        var submitBtn = $(this).find('button[type="submit"]');
-        var originalText = submitBtn.html();
-        
-        // Show loading state
-        submitBtn.html('<i class="fas fa-spinner fa-spin"></i> Sending...');
-        submitBtn.prop('disabled', true);
-        
-        // Simulate sending (replace with actual backend)
-        setTimeout(function(){
-            // alert('Message sent successfully! (Note: This is a demo. For actual functionality, connect to a backend service)');
-            $('#contact-form')[0].reset();
-            submitBtn.html(originalText);
-            submitBtn.prop('disabled', false);
-        }, 2000);
+    // Initialize typing animations
+    const jobTitles = [
+        "Python Developer",
+        "Python Software Engineer",
+        "Backend Developer",
+        "Python API Developer",
+        "Automation Engineer",
+        "Application Developer"
+    ];
+    
+    // Home typing
+    createTypingAnimation('.typing', jobTitles, {
+        typeSpeed: 70,
+        deleteSpeed: 50,
+        delayBetweenWords: 1800
     });
+    
+    // About typing (slightly different rhythm)
+    createTypingAnimation('.typing-2', jobTitles, {
+        typeSpeed: 65,
+        deleteSpeed: 45,
+        delayBetweenWords: 2000,
+        delayStart: 1500
+    });
+    
+    // Add cursor styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .typing-cursor {
+            color: #00D1D1;
+            font-weight: normal;
+            margin-left: 2px;
+            transition: opacity 0.3s ease;
+        }
+        .typing, .typing-2 {
+            display: inline-block;
+            min-height: 1.2em; /* Prevent layout shift */
+        }
+    `;
+    document.head.appendChild(style);
+    
     
     // Back to top in footer
     $('.back-to-top').click(function(e){
@@ -130,4 +183,80 @@ $(document).ready(function(){
         }
     });
     
+});
+
+
+// style.js (Optimized Code)
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const statusDiv = document.getElementById('form-status');
+
+    if (!form) return; 
+
+    // --- NEW: Function to manage the status display ---
+    const updateStatus = (message, isSuccess = true) => {
+        // 1. CLEAR AND RESET
+        clearTimeout(statusDiv.timer); // Clear any pending hide timer
+        statusDiv.classList.remove('error'); // Clear previous error state
+        statusDiv.style.display = 'block';
+        statusDiv.innerHTML = ''; // Explicitly clear content before setting new content
+
+        // 2. SET MESSAGE AND STYLE
+        if (isSuccess) {
+            statusDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+        } else {
+            statusDiv.classList.add('error');
+            statusDiv.innerHTML = `<i class="fas fa-times-circle"></i> ${message}`;
+        }
+
+        // 3. SET HIDE TIMER
+        statusDiv.timer = setTimeout(() => {
+            statusDiv.style.display = 'none';
+        }, 5000);
+    };
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault(); 
+
+        if (!form.reportValidity()) {
+            return;
+        }
+
+        const formData = new FormData(form);
+        const action = form.getAttribute('action');
+        
+        // --- START LOADING STATE ---
+        statusDiv.style.display = 'block';
+        statusDiv.classList.remove('error'); 
+        statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        
+        // Clear the auto-hide timer while loading
+        clearTimeout(statusDiv.timer); 
+        // --- END LOADING STATE ---
+
+        try {
+            const response = await fetch(action, {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                // SUCCESS: Use the new function
+                updateStatus('Message Sent Successfully!', true);
+                form.reset(); 
+            } else {
+                // FAILURE: Use the new function
+                updateStatus(result.message || 'Could not send message.', false);
+            }
+        } catch (error) {
+            // NETWORK ERROR: Use the new function
+            console.error('Submission Error:', error);
+            updateStatus('Network Error. Please try again.', false);
+        }
+        
+        // Note: The hide timer is now managed inside updateStatus
+    });
 });
