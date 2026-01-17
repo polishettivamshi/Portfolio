@@ -217,55 +217,14 @@
 		<div class="max-width">
 			<h2 class="title"><i class="fas fa-code"></i> Projects</h2>
 			<div class="proj-content">
-				<!-- Project 1: Real-Time COVID-19 Detection -->
-				<div class="card">
-					<div class="box">
-						<i class="fas fa-heartbeat"></i>
-						<div class="text">Detection of Covid-19 from Chest X-ray using Web Application</div>
-						<ul class="project-details-list">
-							<li>Developed a web application to detect whether a chest X-ray image belongs to a COVID-19 patient with <strong>high accuracy (97.5%+)</strong>.</li>
-							<li>Used <strong>ResNet-50</strong> model for image analysis and <strong>Streamlit</strong> for real-time frontend interaction.</li>
-							<li>Processed each image in <strong>3-5 seconds</strong> for fast, reliable results.</li>
-							<li><strong>Technologies:</strong> Python, Streamlit, ResNet-50, CNNs.</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- Project 2: FastAPI Real-Time Backend -->
-				<div class="card">
-					<div class="box">
-						<i class="fas fa-server"></i>
-						<div class="text">Real-Time RESTful API Backend for E-commerce</div>
-						<ul class="project-details-list">
-							<li>Developed a scalable RESTful API for e-commerce platform using <strong>FastAPI</strong> to handle products, orders, and user requests in real time.</li>
-							<li>Implemented <strong>JWT-based authentication</strong> and role-based access control.</li>
-							<li>Optimized SQLAlchemy queries with PostgreSQL to ensure fast and reliable database operations.</li>
-							<li><strong>Technologies:</strong> Python, FastAPI, PostgreSQL, SQLAlchemy, JWT.</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- Project 3: Real-Time Analytics Dashboard -->
-				<div class="card">
-					<div class="box">
-						<i class="fas fa-chart-line"></i>
-						<div class="text">Real-Time Analytics Dashboard</div>
-						<ul class="project-details-list">
-							<li>Developed a live dashboard to visualize key metrics from multiple data sources in real time.</li>
-							<li>Integrated <strong>WebSocket</strong> for instant updates and used interactive charts with <strong>Dash and Plotly</strong>.</li>
-							<li>Containerized the application with <strong>Docker</strong> for easy deployment and scalability.</li>
-							<li><strong>Technologies:</strong> Python, Dash, Plotly, WebSocket, Docker.</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- Project 4: Task Automation & Real-Time Data Sync -->
+				
+				<!-- Project 1: Task Automation & Real-Time Data Sync -->
 				<div class="card">
 					<div class="box">
 						<i class="fas fa-robot"></i>
 						<div class="text">Automated Data Processing and Real-Time Sync Tool</div>
 						<ul class="project-details-list">
-							<li>Developed a Python automation tool that <strong>reduced manual data processing by 80%</strong> through automated workflows.</li>
+							<li>Developed a Python automation that <strong>reduced manual data processing by 98%</strong> through automated workflows.</li>
 							<li>Implemented <strong>scheduled Cron jobs</strong> to fetch, clean, and process data from multiple sources automatically.</li>
 							<li>Created <strong>real-time data synchronization</strong> between different systems using API integrations and database triggers.</li>
 							<li>Built <strong>comprehensive logging and error handling</strong> with automatic alerting for failed processes.</li>
@@ -276,7 +235,39 @@
 					</div>
 				</div>
 
-				<!-- Project 5: Personal Portfolio Website (Current Project) -->
+				<!-- Project 2: SQL Server to PostgreSQL Data Migration -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-database"></i>
+						<div class="text">SQL Server to PostgreSQL Data Migration</div>
+						<ul class="project-details-list">
+							<li>Designed and developed a high-performance data migration system to transfer data from <strong>SQL Server</strong> to <strong>PostgreSQL</strong> using Python.</li>
+							<li>Implemented an asynchronous pipeline to extract data from SQL Server, store it locally as structured <strong>JSON</strong>, and insert it into PostgreSQL with high accuracy.</li>
+							<li>Utilized <strong>async processing</strong> and <strong>asynchronous logging</strong> to significantly improve migration speed and reliability.</li>
+							<li>Configured environment-based settings using <strong>.env</strong> files to ensure secure and flexible deployments.</li>
+							<li>Reduced manual intervention by enabling table-driven migrations through API inputs.</li>
+							<li><strong>Technologies:</strong> Python, SQL Server, PostgreSQL, Pandas, NumPy, AsyncIO, Logging, .env</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 3: Django Weather API Integration -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-cloud-sun"></i>
+						<div class="text">Weather Dashboard API with External Integration</div>
+						<ul class="project-details-list">
+							<li>Developed a <strong>Django REST API</strong> integrating with multiple weather APIs (OpenWeatherMap, WeatherAPI) to provide unified weather data.</li>
+							<li>Implemented <strong>Redis caching</strong> and <strong>rate limiting</strong> to optimize performance and reduce external API costs by 40%.</li>
+							<li>Built <strong>user preference system</strong> for saving locations and customizing temperature units (Celsius/Fahrenheit).</li>
+							<li>Created <strong>historical weather endpoints</strong> with date filtering and data aggregation for trend analysis.</li>
+							<li>Added <strong>webhook notifications</strong> for severe weather alerts and automated daily forecast emails using Celery.</li>
+							<li><strong>Technologies:</strong> Python, Django, Django REST Framework, Redis, Celery, OpenWeatherMap API, PostgreSQL, Docker.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 4: Personal Portfolio Website (Current Project) -->
 				<div class="card">
 					<div class="box">
 						<i class="fas fa-laptop-code"></i>
@@ -291,18 +282,30 @@
 					</div>
 				</div>
 
-				<!-- Project 6: Django Weather API Integration -->
+				<!-- Project 5: Real-Time COVID-19 Detection -->
 				<div class="card">
 					<div class="box">
-						<i class="fas fa-cloud-sun"></i>
-						<div class="text">Weather Dashboard API with External Integration</div>
+						<i class="fas fa-heartbeat"></i>
+						<div class="text">Detection of Covid-19 from Chest X-ray using Web Application</div>
 						<ul class="project-details-list">
-							<li>Developed a <strong>Django REST API</strong> integrating with multiple weather APIs (OpenWeatherMap, WeatherAPI) to provide unified weather data.</li>
-							<li>Implemented <strong>Redis caching</strong> and <strong>rate limiting</strong> to optimize performance and reduce external API costs by 40%.</li>
-							<li>Built <strong>user preference system</strong> for saving locations and customizing temperature units (Celsius/Fahrenheit).</li>
-							<li>Created <strong>historical weather endpoints</strong> with date filtering and data aggregation for trend analysis.</li>
-							<li>Added <strong>webhook notifications</strong> for severe weather alerts and automated daily forecast emails using Celery.</li>
-							<li><strong>Technologies:</strong> Python, Django, Django REST Framework, Redis, Celery, OpenWeatherMap API, PostgreSQL, Docker.</li>
+							<li>Developed a web application to detect whether a chest X-ray image belongs to a COVID-19 patient with <strong>high accuracy (97.5%+)</strong>.</li>
+							<li>Used <strong>ResNet-50</strong> model for image analysis and <strong>Streamlit</strong> for real-time frontend interaction.</li>
+							<li>Processed each image in <strong>3-5 seconds</strong> for fast, reliable results.</li>
+							<li><strong>Technologies:</strong> Python, Streamlit, ResNet-50, CNNs.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Project 6: FastAPI Real-Time Backend -->
+				<div class="card">
+					<div class="box">
+						<i class="fas fa-server"></i>
+						<div class="text">Real-Time RESTful API Backend for E-commerce</div>
+						<ul class="project-details-list">
+							<li>Developed a scalable RESTful API for e-commerce platform using <strong>FastAPI</strong> to handle products, orders, and user requests in real time.</li>
+							<li>Implemented <strong>JWT-based authentication</strong> and role-based access control.</li>
+							<li>Optimized SQLAlchemy queries with PostgreSQL to ensure fast and reliable database operations.</li>
+							<li><strong>Technologies:</strong> Python, FastAPI, PostgreSQL, SQLAlchemy, JWT.</li>
 						</ul>
 					</div>
 				</div>
@@ -338,8 +341,9 @@
 							<i class="fas fa-database"></i>
 							<h3>Database & Backend</h3>
 							<ul class="skill-list">
-								<li>PostgreSQL, SQL Server</li>
-								<li>Elasticsearch</li>
+								<li>PostgreSQL, SQL Server, MySQL</li>
+								<li>ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+								<li>Grafana</li>
 								<li>RabbitMQ (Messaging)</li>
 								<li>RESTful API Development</li>
 								<li>Database Optimization</li>
@@ -400,6 +404,8 @@
 								<li>Production Deployment</li>
 								<li>Scalable Architecture</li>
 								<li>Performance Optimization</li>
+								<li>Advanced Debugging</li>
+								<li>Root Cause Analysis</li>
 								<li>Code Maintainability</li>
 								<li>Application Monitoring</li>
 							</ul>
