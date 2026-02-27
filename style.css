@@ -2137,3 +2137,26 @@ footer::before {
         font-size: 0.8rem;
     }
 }
+
+
+#visit-count {
+    font-family: monospace;
+    background: #24292e; /* GitHub Dark Gray */
+    color: #3fb950;    /* GitHub Green */
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #30363d;
+}
+
+.visitor-container::before {
+    content: "●";
+    color: #3fb950;
+    margin-right: 5px;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
