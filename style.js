@@ -260,39 +260,3 @@ document.addEventListener('DOMContentLoaded', () => {
         // Note: The hide timer is now managed inside updateStatus
     });
 });
-
-
-/**
- * Stable Visitor Counter for Vamshi's GitHub Portfolio
- */
-async function initCounter() {
-    const display = document.getElementById('visit-count');
-    const namespace = "vamshi-polishetti-portfolio-2026"; // Unique name
-    const key = "main-page";
-
-    try {
-        // 1. Check if user already visited in this session
-        let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-        
-        if (!sessionStorage.getItem('has_counted')) {
-            // Hit the API to increment +1
-            url += `/increment`;
-            sessionStorage.setItem('has_counted', 'true');
-        }
-
-        // 2. Fetch the data
-        const response = await fetch(url);
-        const data = await response.json();
-
-        // 3. Update the HTML with the new count
-        if (data && data.count) {
-            display.innerText = data.count.toLocaleString();
-        }
-    } catch (error) {
-        console.error("Counter Error:", error);
-        display.innerText = "Live"; // Fallback text
-    }
-}
-
-// Run when page is ready
-document.addEventListener('DOMContentLoaded', initCounter);
