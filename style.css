@@ -1748,6 +1748,246 @@ footer::before {
     padding: 0 5px;
 }
 
+/* ============================================================
+   DARK MODE TOGGLE
+   ============================================================ */
+.theme-toggle {
+    background: none;
+    border: 2px solid rgba(0, 209, 209, 0.3);
+    color: #00D1D1;
+    font-size: 1.3rem;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+}
+
+.theme-toggle:hover {
+    background: rgba(0, 209, 209, 0.1);
+    border-color: #00D1D1;
+    transform: scale(1.1) rotate(20deg);
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover i {
+    transform: scale(1.2);
+}
+
+/* ============================================================
+   DARK MODE STYLES
+   ============================================================ */
+body.dark-mode {
+    background: #0a0a0a;
+    color: #e0e0e0;
+}
+
+body.dark-mode section {
+    background: #0a0a0a;
+}
+
+body.dark-mode .title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .experience {
+    background: #111;
+}
+
+body.dark-mode .job-item {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .job-item .job-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .job-item .skills {
+    background: rgba(0, 209, 209, 0.15);
+    color: #e0e0e0;
+}
+
+body.dark-mode .about-content .column.right {
+    color: #e0e0e0;
+}
+
+body.dark-mode .ai-summary-list li {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .ai-summary-list li span {
+    color: #ccc;
+}
+
+body.dark-mode .stats {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .projects {
+    background: #111;
+}
+
+body.dark-mode .card {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .box .text {
+    color: #e0e0e0;
+}
+
+body.dark-mode .project-details-list {
+    color: #ccc;
+}
+
+body.dark-mode .project-details-list strong {
+    color: #e0e0e0;
+}
+
+body.dark-mode .skills {
+    background: #0a0a0a;
+}
+
+body.dark-mode .skill-category .box {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .skill-category .box h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .skill-list li {
+    color: #ccc;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .skill-list li:hover {
+    color: #00D1D1;
+}
+
+body.dark-mode .education {
+    background: #111;
+}
+
+body.dark-mode .education-item {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .education-item h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificates {
+    background: #111;
+}
+
+body.dark-mode .certificate-card {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificate-card h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificate-issuer {
+    color: #999;
+}
+
+body.dark-mode .certificate-link a {
+    color: #e0e0e0;
+    background: rgba(0, 209, 209, 0.15);
+}
+
+body.dark-mode .certificate-link a:hover {
+    background: #00D1D1;
+    color: #0a0a0a;
+}
+
+body.dark-mode footer {
+    background: linear-gradient(to right, #000, #0a0a0a);
+    color: #e0e0e0;
+}
+
+body.dark-mode .footer-about p {
+    color: #999;
+}
+
+body.dark-mode .social-link-footer {
+    color: #999;
+    background: rgba(0, 209, 209, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .social-link-footer:hover {
+    background: #00D1D1;
+    color: #0a0a0a;
+}
+
+body.dark-mode .footer-links a {
+    color: #999;
+    background: rgba(0, 209, 209, 0.05);
+}
+
+body.dark-mode .footer-links a:hover {
+    color: #00D1D1;
+    background: rgba(0, 209, 209, 0.15);
+}
+
+body.dark-mode .copyright {
+    color: #999;
+}
+
+body.dark-mode .view-counter {
+    color: #999;
+}
+
+body.dark-mode .portfolio-tag span {
+    color: #999;
+    background: rgba(0, 209, 209, 0.05);
+    border-color: rgba(0, 209, 209, 0.2);
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 209, 209, 0.3);
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-instruction {
+    color: #999;
+}
+
+body.dark-mode .highlight-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+}
+
+body.dark-mode .info-content h4 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .info-content p {
+    color: #999;
+}
+
+/* Dark mode theme toggle icon change */
+body.dark-mode .theme-toggle i::before {
+    content: '';
+}
+
 
 /* --- WhatsApp Float Button Styles --- */
 

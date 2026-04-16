@@ -383,7 +383,7 @@
         setTimeout(type, 1000);
     }
 
-    const jobTitles = ["Python Developer", "Python Software Engineer", "Backend Developer", "Python API Developer", "Automation Engineer", "Application Developer"];
+    const jobTitles = ["Python Developer", "Python AWS Developer", "Python Software Engineer", "Backend Developer", "Python API Developer", "Application Developer"];
 
     // Add a small delay to ensure the DOM elements are fully painted
     setTimeout(() => {
@@ -668,6 +668,69 @@ $(document).ready(function() {
                 incrementLocalCounter();
                 localStorage.setItem('last_increment_time', now.toString());
             }
+        }
+    });
+});
+
+// ============================================================
+// DARK MODE TOGGLE
+// ============================================================
+$(document).ready(function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    const body = document.body;
+    const themeKey = 'portfolio-theme';
+
+    // Load saved theme preference
+    function loadTheme() {
+        const savedTheme = localStorage.getItem(themeKey) || 'light';
+        applyTheme(savedTheme);
+    }
+
+    // Apply theme
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            htmlElement.setAttribute('data-theme', 'dark');
+            if (themeToggle) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                themeToggle.title = 'Switch to Light Mode';
+            }
+        } else {
+            body.classList.remove('dark-mode');
+            htmlElement.setAttribute('data-theme', 'light');
+            if (themeToggle) {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                themeToggle.title = 'Switch to Dark Mode';
+            }
+        }
+        localStorage.setItem(themeKey, theme);
+    }
+
+    // Toggle theme
+    function toggleTheme() {
+        const currentTheme = localStorage.getItem(themeKey) || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+    }
+
+    // Handle theme toggle button click
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    // Check system preference if no saved preference
+    if (!localStorage.getItem(themeKey)) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(prefersDark ? 'dark' : 'light');
+    } else {
+        loadTheme();
+    }
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem(themeKey)) {
+            applyTheme(e.matches ? 'dark' : 'light');
         }
     });
 });
