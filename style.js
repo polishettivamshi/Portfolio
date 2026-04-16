@@ -342,20 +342,22 @@
     // ============================================================
     // STICKY NAVBAR
     // ============================================================
-    $(window).scroll(function () {
-        $('.navbar').toggleClass("sticky", this.scrollY > 20);
-        $('.scroll-up-btn').toggleClass("show", this.scrollY > 500);
-    });
-    $('.scroll-up-btn').click(() => $('html, body').animate({ scrollTop: 0 }));
-    $('.menu-btn').click(function () {
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
-    });
-    $('.menu a').click(function (e) {
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top - 70 }, 300);
-        $('.navbar .menu').removeClass("active");
-        $('.menu-btn i').removeClass("active");
+    $(document).ready(function() {
+        $(window).scroll(function () {
+            $('.navbar').toggleClass("sticky", this.scrollY > 20);
+            $('.scroll-up-btn').toggleClass("show", this.scrollY > 500);
+        });
+        $('.scroll-up-btn').click(() => $('html, body').animate({ scrollTop: 0 }));
+        $('.menu-btn').click(function () {
+            $('.navbar .menu').toggleClass("active");
+            $('.menu-btn i').toggleClass("active");
+        });
+        $('.menu a').click(function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top - 70 }, 300);
+            $('.navbar .menu').removeClass("active");
+            $('.menu-btn i').removeClass("active");
+        });
     });
 
 
@@ -549,6 +551,123 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error(err);
             updateStatus('Network Error. Please try again.', false);
+        }
+    });
+});
+
+// ============================================================
+// VIEW COUNTER WITH PERSISTENCE
+// ============================================================
+$(document).ready(function() {
+    const namespace = 'vamshi-portfolio';
+    const counterKey = 'views';
+    const localStorageKey = 'portfolio_view_count';
+    const viewCountElement = document.getElementById('view-count');
+
+    if (!viewCountElement) return;
+
+    // Function to format numbers with commas
+    function formatNumber(num) {
+        return num.toLocaleString();
+    }
+
+    // Function to get count from localStorage
+    function getLocalCount() {
+        return parseInt(localStorage.getItem(localStorageKey)) || 0;
+    }
+
+    // Function to save count to localStorage
+    function saveLocalCount(count) {
+        localStorage.setItem(localStorageKey, count.toString());
+    }
+
+    // Function to update display
+    function updateDisplay(count, source = 'unknown') {
+        viewCountElement.textContent = formatNumber(count);
+        console.log(`View counter updated: ${count} (source: ${source})`);
+    }
+
+    // Function to increment local counter
+    function incrementLocalCounter() {
+        const currentCount = getLocalCount();
+        const newCount = currentCount + 1;
+        saveLocalCount(newCount);
+        updateDisplay(newCount, 'localStorage');
+        return newCount;
+    }
+
+    // Function to try CountAPI
+    function tryCountAPI() {
+        return fetch(`https://api.countapi.xyz/hit/${namespace}/${counterKey}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'Portfolio-View-Counter/1.0'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && typeof data.value === 'number') {
+                // Sync with localStorage for backup
+                saveLocalCount(data.value);
+                updateDisplay(data.value, 'CountAPI');
+                return data.value;
+            } else {
+                throw new Error('Invalid API response');
+            }
+        });
+    }
+
+    // Main counter logic with fallbacks
+    function initializeCounter() {
+        viewCountElement.textContent = 'Loading...';
+
+        // First, try to get from CountAPI
+        tryCountAPI()
+            .then(apiCount => {
+                // Successfully got count from API
+                console.log('CountAPI working, using API count:', apiCount);
+            })
+            .catch(apiError => {
+                console.warn('CountAPI failed:', apiError.message);
+                // Fallback to localStorage
+                const localCount = getLocalCount();
+                if (localCount > 0) {
+                    // We have a local count, use it and try to sync later
+                    updateDisplay(localCount, 'localStorage (API failed)');
+                    // Try to sync with API in background (don't wait for it)
+                    tryCountAPI().catch(() => {
+                        // If API still fails, just increment locally
+                        incrementLocalCounter();
+                    });
+                } else {
+                    // No local count, start fresh locally
+                    incrementLocalCounter();
+                }
+            });
+    }
+
+    // Initialize counter when page loads
+    initializeCounter();
+
+    // Optional: Update counter on visibility change (when user returns to tab)
+    // This prevents counting multiple times for the same session
+    let hasIncremented = false;
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden && !hasIncremented) {
+            hasIncremented = true;
+            // Only increment if it's been more than 30 minutes since last increment
+            const lastIncrement = localStorage.getItem('last_increment_time');
+            const now = Date.now();
+            if (!lastIncrement || (now - parseInt(lastIncrement)) > 30 * 60 * 1000) {
+                incrementLocalCounter();
+                localStorage.setItem('last_increment_time', now.toString());
+            }
         }
     });
 });

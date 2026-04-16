@@ -1581,6 +1581,28 @@ footer::before {
     text-decoration: underline;
 }
 
+.view-counter {
+    color: #888;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-counter i {
+    color: #00D1D1;
+}
+
+.view-counter a {
+    color: #00D1D1;
+    text-decoration: none;
+}
+
+.view-counter img {
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
 .portfolio-tag {
     display: flex;
     flex-wrap: wrap;
@@ -1682,7 +1704,7 @@ footer::before {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    cursor: pointer;
+    cursor: pointer !important;
     opacity: 0;
     transition: all 0.3s ease;
     z-index: 999;
@@ -1746,8 +1768,9 @@ footer::before {
     color: white;
     border-radius: 50px; 
     padding: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(37, 211, 102, 0.6);
     transition: all 0.3s ease; /* Smooth transition for hover effects */
+    animation: whatsapp-glow 2s ease-in-out infinite alternate;
 }
 
 .whatsapp-link:hover {
@@ -1795,6 +1818,14 @@ footer::before {
     30% { transform: rotate(-5deg); }
     45% { transform: rotate(5deg); }
     60% { transform: rotate(0deg); }
+}
+
+@keyframes whatsapp-glow {
+    0% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(37, 211, 102, 0.6); }
+    25% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(37, 211, 102, 0.7), 0 0 35px rgba(37, 211, 102, 0.5); }
+    50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 30px rgba(37, 211, 102, 0.8), 0 0 40px rgba(37, 211, 102, 0.4); }
+    75% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(37, 211, 102, 0.7), 0 0 35px rgba(37, 211, 102, 0.5); }
+    100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(37, 211, 102, 0.6); }
 }
 
 
