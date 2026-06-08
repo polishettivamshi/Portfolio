@@ -134,10 +134,56 @@
         requestAnimationFrame(animateRing);
     })();
 
-    document.querySelectorAll('a, button, .cta-button, .project-card, .social-link, input, textarea').forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
+    function initProjectInteractions() {
+        document.querySelectorAll('a, button, .cta-button, .project-card, .social-link, input, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+
+        document.querySelectorAll('.project-image-link').forEach(link => {
+            const img = link.querySelector('.project-image');
+            const imgSrc = link.dataset.img || (img && img.dataset.src);
+            const liveUrl = link.dataset.liveUrl && link.dataset.liveUrl.trim();
+
+            if (!imgSrc || !img) {
+                const wrapper = link.closest('.project-image-wrapper');
+                if (wrapper) wrapper.remove();
+                return;
+            }
+
+            const loader = new Image();
+            loader.onload = () => {
+                img.src = imgSrc;
+                if (!liveUrl) {
+                    link.classList.add('no-live');
+                    link.removeAttribute('target');
+                    link.removeAttribute('rel');
+                }
+            };
+            loader.onerror = () => {
+                const wrapper = link.closest('.project-image-wrapper');
+                if (wrapper) wrapper.remove();
+            };
+            loader.src = imgSrc;
+
+            if (liveUrl) {
+                link.href = liveUrl;
+                link.dataset.liveUrl = liveUrl;
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+                const altText = img.alt || img.title || 'Project';
+                link.setAttribute('aria-label', `${altText} live preview`);
+                link.classList.remove('no-live');
+            } else {
+                link.addEventListener('click', event => {
+                    event.preventDefault();
+                    alert('No data found');
+                });
+            }
+        });
+    }
+
+    window.addEventListener('load', initProjectInteractions);
 
 
     // ============================================================

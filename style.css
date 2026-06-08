@@ -717,6 +717,73 @@ section {
     color: #00a8a8;
 }
 
+.project-link {
+    color: #00D1D1;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.project-image-wrapper {
+    margin-bottom: 16px;
+}
+
+.project-image-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 209, 209, 0.12);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-image-link:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 209, 209, 0.4);
+}
+
+.project-image-link.no-live {
+    cursor: default;
+}
+
+.project-image-link.no-live:hover {
+    transform: none;
+    border-color: rgba(0, 209, 209, 0.12);
+}
+
+.project-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    filter: brightness(0.95);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-image-link:hover .project-image {
+    transform: scale(1.02);
+    filter: brightness(1);
+}
+
+.project-image-status {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 0.85rem;
+    text-align: center;
+    letter-spacing: 0.2px;
+}
+
+.project-image-link.no-live .project-image-status {
+    background: rgba(220, 53, 69, 0.85);
+}
+
 /* Optional: Add a subtle gradient effect on hover */
 .card::before {
     content: '';
