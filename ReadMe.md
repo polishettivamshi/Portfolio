@@ -81,6 +81,25 @@ The production files are generated in:
 dist/
 ```
 
+## GitHub Pages Deployment
+
+This project can deploy through GitHub Actions.
+
+Create these repository secrets in GitHub:
+
+```text
+VITE_FLASK_CONTACT_FORM_API_URL=https://flask-contact-form-api.onrender.com
+VITE_API_KEY=your_contact_form_api_key
+```
+
+The deployment workflow passes those secrets into the Vite build. Because the variables start with `VITE_`, Vite includes them in the generated browser JavaScript.
+
+In GitHub, set Pages source to:
+
+```text
+GitHub Actions
+```
+
 ## Preview Production Build
 
 ```bash
