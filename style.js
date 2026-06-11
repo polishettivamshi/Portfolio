@@ -161,8 +161,9 @@
                 }
             };
             loader.onerror = () => {
-                const wrapper = link.closest('.project-image-wrapper');
-                if (wrapper) wrapper.remove();
+                console.error(`Failed to load project image: ${imgSrc}`);
+                // Optional: set a fallback placeholder image instead of removing the wrapper
+                // img.src = 'images/fallback-placeholder.png';
             };
             loader.src = imgSrc;
 

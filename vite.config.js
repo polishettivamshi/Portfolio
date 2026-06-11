@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite';
-import path from 'path';
 
 export default defineConfig({
-  // Keep default publicDir (public/) — we'll serve images via middleware
+  base: '/Portfolio/',
   appType: 'mpa',
   build: {
     outDir: 'dist',
