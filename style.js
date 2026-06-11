@@ -278,13 +278,13 @@
     // ============================================================
     // OPEN TO WORK BADGE
     // ============================================================
-    const homeContent = document.querySelector('.home-content');
-    if (homeContent) {
-        const badge = document.createElement('div');
-        badge.className = 'open-to-work-badge';
-        badge.innerHTML = '<span class="otw-dot"></span> Open to Work';
-        homeContent.insertBefore(badge, homeContent.firstChild);
-    }
+    // const homeContent = document.querySelector('.home-content');
+    // if (homeContent) {
+    //     const badge = document.createElement('div');
+    //     badge.className = 'open-to-work-badge';
+    //     badge.innerHTML = '<span class="otw-dot"></span> Open to Work';
+    //     homeContent.insertBefore(badge, homeContent.firstChild);
+    // }
 
     const badgeStyle = document.createElement('style');
     badgeStyle.textContent = `
