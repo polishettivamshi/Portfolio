@@ -570,6 +570,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusDiv = document.getElementById('form-status');
     if (!form) return;
 
+    const contactFormEnv = import.meta.env || {};
+    const CONTACT_FORM_API_URL = contactFormEnv.VITE_FLASK_CONTACT_FORM_API_URL;
+    const CONTACT_FORM_API_KEY = contactFormEnv.VITE_API_KEY;
+
     const updateStatus = (message, isSuccess = true) => {
         clearTimeout(statusDiv.timer);
         statusDiv.classList.remove('error');
@@ -583,17 +587,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
+
         if (!form.reportValidity()) return;
-        const formData = new FormData(form);
+
+        const name = form.querySelector('input[name="name"]').value.trim();
+        const email = form.querySelector('input[name="email"]').value.trim();
+        const message = form.querySelector('textarea[name="message"]').value.trim();
+
         statusDiv.style.display = 'block';
         statusDiv.classList.remove('error');
         statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
         clearTimeout(statusDiv.timer);
+
+        if (!CONTACT_FORM_API_URL || !CONTACT_FORM_API_KEY) {
+            updateStatus('Contact form is not configured. Please try again later.', false);
+            return;
+        }
+
         try {
-            const res = await fetch(form.getAttribute('action'), { method: 'POST', body: formData });
+            const res = await fetch(`${CONTACT_FORM_API_URL}/send-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': CONTACT_FORM_API_KEY
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    message
+                })
+            });
+
             const result = await res.json();
-            if (res.ok && result.success) { updateStatus('Message Sent Successfully!', true); form.reset(); }
-            else updateStatus(result.message || 'Could not send message.', false);
+
+            if (res.ok && result.success) {
+                updateStatus('Message Sent Successfully!', true);
+                form.reset();
+            } else {
+                updateStatus(result.message || 'Could not send message.', false);
+            }
         } catch (err) {
             console.error(err);
             updateStatus('Network Error. Please try again.', false);
