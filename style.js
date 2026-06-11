@@ -187,9 +187,30 @@
 
 
     // ============================================================
-    // GITHUB STATS EMBED
+    // GITHUB STATS EMBED — detailed & side-by-side with .stats
     // ============================================================
     const githubUsername = 'polishettivamshi';
+
+    // — wrap existing .stats + new github wrapper in a side-by-side container —
+    const aboutRight = document.querySelector('.about-content .column.right');
+    const existingStats = aboutRight ? aboutRight.querySelector('.stats') : null;
+
+    // Create the side-by-side row container
+    const bottomRow = document.createElement('div');
+    bottomRow.className = 'about-bottom-row';
+
+    // Leave .stats where it is, but move it into bottomRow
+    if (existingStats && aboutRight) {
+        // Move .stats into bottomRow
+        bottomRow.appendChild(existingStats.cloneNode(true));
+        existingStats.replaceWith(bottomRow); // replace original .stats with the row (stats is first child)
+        // Re-query: bottomRow now holds the cloned stats, update reference
+        const newStats = bottomRow.querySelector('.stats');
+        // Remove the old .stats reference and keep newStats in bottomRow
+    } else if (aboutRight) {
+        aboutRight.appendChild(bottomRow);
+    }
+
     const statsContainer = document.createElement('div');
     statsContainer.className = 'github-stats-wrapper';
     statsContainer.innerHTML = `
@@ -199,36 +220,124 @@
                  alt="GitHub Stats" class="github-stat-img" onerror="this.parentElement.parentElement.style.display='none'">
             <img src="https://github-readme-streak-stats.herokuapp.com?user=${githubUsername}&theme=dark&ring=00D1D1&fire=00D1D1&currStreakLabel=00D1D1&background=0d1117&border=00D1D1"
                  alt="GitHub Streak" class="github-stat-img" onerror="this.style.display='none'">
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername}&langs_count=8&layout=compact&theme=react&bg_color=0d1117&title_color=00D1D1&text_color=ffffff&border_color=00D1D1&hide=html,css"
+                 alt="Top Languages" class="github-stat-img" loading="lazy" onerror="this.style.display='none'">
+            <div class="github-extra-details">
+                <div class="github-detail-item">
+                    <i class="fab fa-github"></i>
+                    <span><strong>${githubUsername}</strong></span>
+                    <span class="github-extra-sub">2.5+ years · Backend · Open Source</span>
+                </div>
+                <div class="github-detail-item">
+                    <i class="fas fa-code-branch"></i>
+                    <span><strong>35+ Repositories</strong></span>
+                    <span class="github-extra-sub">Python · FastAPI · Flask · React</span>
+                </div>
+                <div class="github-detail-item">
+                    <i class="fas fa-star"></i>
+                    <span><strong>Active Contributions</strong></span>
+                    <span class="github-extra-sub">JIRA · Commits · PRs · Code Reviews</span>
+                </div>
+                <a href="https://github.com/${githubUsername}" target="_blank" rel="noopener noreferrer" class="github-view-btn">
+                    <i class="fab fa-github"></i> View Full Profile
+                </a>
+            </div>
         </div>
     `;
+    // Append github wrapper as second child of bottomRow
+    if (bottomRow.parentNode) {
+        bottomRow.appendChild(statsContainer);
+    }
 
     const githubStyle = document.createElement('style');
     githubStyle.textContent = `
+        .about-bottom-row {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+        .about-bottom-row > .stats {
+            flex: 1;
+            min-width: 280px;
+            margin-top: 0;
+        }
         .github-stats-wrapper {
-            margin-top: 32px; padding: 20px;
+            flex: 1;
+            min-width: 320px;
+            padding: 20px;
             background: rgba(0,209,209,0.05);
+            backdrop-filter: blur(4px);
             border: 1px solid rgba(0,209,209,0.2);
             border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .github-stats-wrapper:hover {
+            border-color: rgba(0,209,209,0.5);
+            box-shadow: 0 8px 30px rgba(0,209,209,0.12);
         }
         .github-stats-title {
-            color: #00D1D1; font-size: 1rem;
-            font-weight: 600; margin-bottom: 16px; letter-spacing: 1px;
+            color: #00D1D1; font-size: 1.05rem;
+            font-weight: 700; margin-bottom: 14px; letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 8px;
         }
-        .github-stats-title i { margin-right: 8px; }
-        .github-stats-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+        .github-stats-title i { font-size: 1.2rem; }
+        .github-stats-cards { display: flex; flex-direction: column; gap: 12px; }
         .github-stat-img {
-            border-radius: 8px; max-width: 100%; flex: 1; min-width: 260px;
+            border-radius: 8px; max-width: 100%; width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .github-stat-img:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,209,209,0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,209,209,0.2);
+        }
+        .github-extra-details {
+            display: flex; flex-direction: column; gap: 10px;
+            padding: 14px; border-radius: 8px;
+            background: rgba(0,209,209,0.04);
+            border: 1px solid rgba(0,209,209,0.1);
+        }
+        .github-detail-item {
+            display: flex; flex-direction: column; gap: 2px;
+            color: #ccc;
+        }
+        .github-detail-item i {
+            color: #00D1D1; margin-right: 6px;
+            font-size: 1rem;
+        }
+        .github-detail-item strong {
+            color: #000000; font-size: 0.95rem;
+        }
+        .github-extra-sub {
+            font-size: 0.8rem; color: #888;
+            margin-top: 1px;
+        }
+        .github-view-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; margin-top: 4px;
+            background: rgba(0,209,209,0.1);
+            border: 1px solid rgba(0,209,209,0.3);
+            color: #00D1D1; border-radius: 6px;
+            text-decoration: none; font-size: 0.85rem; font-weight: 600;
+            transition: all 0.2s ease; align-self: flex-start;
+        }
+        .github-view-btn:hover {
+            background: rgba(0,209,209,0.2);
+            border-color: #00D1D1;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .about-bottom-row {
+                flex-direction: column;
+            }
+            .about-bottom-row > .stats,
+            .github-stats-wrapper {
+                min-width: 100%;
+            }
         }
     `;
     document.head.appendChild(githubStyle);
-
-    const aboutRight = document.querySelector('.about-content .column.right');
-    if (aboutRight) aboutRight.appendChild(statsContainer);
 
 
     // ============================================================

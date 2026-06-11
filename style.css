@@ -492,96 +492,87 @@ section {
 }
 
 .stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 40px;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Hover Effect for Stats Section */
-.stats:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 209, 209, 0.2);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 32px;
 }
 
 .stat-item {
-    text-align: center;
-    padding: 10px;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 18px 12px;
+    border-radius: 10px;
     transition: all 0.3s ease;
     cursor: pointer;
+    background: white;
+    border: 1px solid rgba(0, 209, 209, 0.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+    min-height: 100px;
 }
 
-.stat-item:hover {
-    background: rgba(0, 209, 209, 0.05);
-    transform: scale(1.05);
-}
-
-.stat-number {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #00D1D1;
-    transition: all 0.3s ease;
-}
-
-.stat-item:hover .stat-number {
-    transform: scale(1.1);
-    text-shadow: 0 5px 15px rgba(0, 209, 209, 0.3);
-}
-
-.stat-label {
-    color: #666;
-    font-size: 0.9rem;
-    margin-top: 8px;
-    transition: color 0.3s ease;
-}
-
-.stat-item:hover .stat-label {
-    color: #00D1D1;
-    font-weight: 600;
-}
-
-/* Optional: Add gradient border to stats section on hover */
-.stats::before {
+.stat-item::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg, #00D1D1, #6C63FF);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
 }
 
-.stats:hover::before {
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 209, 209, 0.35);
+}
+
+.stat-item:hover::before {
     transform: scaleX(1);
 }
 
-/* Optional: Add shine effect to stats section */
-.stats::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.7s ease;
+.stat-icon {
+    font-size: 1.6rem;
+    color: #00D1D1;
+    transition: transform 0.3s ease;
 }
 
-.stats:hover::after {
-    left: 100%;
+.stat-item:hover .stat-icon {
+    transform: scale(1.15);
+}
+
+.stat-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00D1D1;
+    transition: all 0.3s ease;
+    line-height: 1.2;
+}
+
+.stat-item:hover .stat-number {
+    text-shadow: 0 3px 10px rgba(0, 209, 209, 0.25);
+}
+
+.stat-label {
+    color: #777;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    text-align: center;
+}
+
+.stat-item:hover .stat-label {
+    color: #00D1D1;
+    font-weight: 600;
 }
 
 /* Responsive Design */
@@ -601,15 +592,36 @@ section {
         margin: 0 auto;
         display: block;
     }
-    
+}
+
+@media (max-width: 768px) {
     .stats {
-        flex-wrap: wrap;
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .stat-item {
+        min-height: 70px;
+        padding: 12px 8px;
     }
     
-    .stat-item {
-        flex: 1 1 calc(50% - 20px);
-        min-width: 120px;
+    .stat-number {
+        font-size: 1.1rem;
+    }
+    
+    .stat-icon {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
     }
 }
 
@@ -1896,8 +1908,21 @@ body.dark-mode .ai-summary-list li span {
 }
 
 body.dark-mode .stats {
-    background: #1a1a1a;
+    background: transparent;
     color: #e0e0e0;
+}
+
+body.dark-mode .stat-item {
+    background: #1a1a1a;
+    border-color: rgba(0, 209, 209, 0.15);
+}
+
+body.dark-mode .stat-label {
+    color: #999;
+}
+
+body.dark-mode .stat-item:hover .stat-label {
+    color: #00D1D1;
 }
 
 body.dark-mode .projects {
@@ -2051,8 +2076,34 @@ body.dark-mode .info-content p {
 }
 
 /* Dark mode theme toggle icon change */
-body.dark-mode .theme-toggle i::before {
-    content: '';
+/* Light mode: fix GitHub detail text visibility */
+.github-detail-item {
+    color: #444;
+}
+.github-detail-item strong {
+    color: #222;
+}
+.github-extra-sub {
+    color: #888;
+}
+body.dark-mode .github-detail-item {
+    color: #aaa;
+}
+body.dark-mode .github-detail-item strong {
+    color: #00D1D1;
+}
+body.dark-mode .github-extra-sub {
+    color: #888;
+}
+
+/* Theme toggle - better visibility on dark navbar */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(0, 209, 209, 0.4);
+    color: #00D1D1;
+}
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 
@@ -2202,8 +2253,7 @@ body.dark-mode .theme-toggle i::before {
     }
     
     .stats {
-        flex-direction: column;
-        gap: 20px;
+        gap: 10px;
     }
     
     .job-item {

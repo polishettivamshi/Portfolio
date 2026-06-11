@@ -36,3 +36,4 @@ Thumbs.db
 # Misc
 .eslintcache
 /.parcel-cache/
+/.git_disabled
