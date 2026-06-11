@@ -85,14 +85,22 @@ dist/
 
 This project can deploy through GitHub Actions.
 
-Create these repository secrets in GitHub:
+Create these repository secrets or repository variables in GitHub:
 
 ```text
 VITE_FLASK_CONTACT_FORM_API_URL=https://flask-contact-form-api.onrender.com
 VITE_API_KEY=your_contact_form_api_key
 ```
 
-The deployment workflow passes those secrets into the Vite build. Because the variables start with `VITE_`, Vite includes them in the generated browser JavaScript.
+The deployment workflow passes those values into the Vite build. Because the variables start with `VITE_`, Vite includes them in the generated browser JavaScript.
+
+Recommended location:
+
+```text
+Settings > Secrets and variables > Actions > Repository secrets
+```
+
+If you create them under repository variables instead, the workflow supports that too.
 
 In GitHub, set Pages source to:
 
