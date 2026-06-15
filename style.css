@@ -132,12 +132,17 @@ section {
 .home {
     background: url('./images/Background_img_Home.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     height: 100vh;
     display: flex;
     align-items: center;
     color: white;
     text-align: center;
+    justify-content: center;
+}
+
+.home .max-width {
+    margin: 0 auto;
 }
 
 .home-content {
@@ -2243,13 +2248,13 @@ body.dark-mode .github-extra-sub {
     
     .cta-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     
     .cta-button {
         width: 100%;
         max-width: 300px;
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .stats {
