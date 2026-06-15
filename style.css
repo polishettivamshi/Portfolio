@@ -130,7 +130,7 @@ section {
 
 /* Home Section */
 .home {
-    background: url('./images/Background_img_Home.jpg');
+    background-image: url('./public/images/Background_img_Home.jpg');
     background-size: cover;
     background-position: center top;
     height: 100vh;
@@ -1877,6 +1877,12 @@ body.dark-mode section {
     background: #0a0a0a;
 }
 
+body.dark-mode .home {
+    background-image: url('./public/images/Background_img_Home.jpg');
+    background-size: cover;
+    background-position: center top;
+}
+
 body.dark-mode .title {
     color: #e0e0e0;
 }
@@ -1931,7 +1937,7 @@ body.dark-mode .stat-item:hover .stat-label {
 }
 
 body.dark-mode .projects {
-    background: #111;
+    background-color: #111;
 }
 
 body.dark-mode .card {
@@ -1952,7 +1958,7 @@ body.dark-mode .project-details-list strong {
 }
 
 body.dark-mode .skills {
-    background: #0a0a0a;
+    background-color: #0a0a0a;
 }
 
 body.dark-mode .skill-category .box {
@@ -1974,7 +1980,7 @@ body.dark-mode .skill-list li:hover {
 }
 
 body.dark-mode .education {
-    background: #111;
+    background-color: #111;
 }
 
 body.dark-mode .education-item {
@@ -1987,7 +1993,7 @@ body.dark-mode .education-item h3 {
 }
 
 body.dark-mode .certificates {
-    background: #111;
+    background-color: #111;
 }
 
 body.dark-mode .certificate-card {
