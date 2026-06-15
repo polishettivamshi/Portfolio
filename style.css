@@ -132,13 +132,28 @@ section {
 .home {
     background-image: url('./public/images/Background_img_Home.jpg');
     background-size: cover;
-    background-position: center top;
+    background-position: center 30%;
     height: 100vh;
     display: flex;
     align-items: center;
     color: white;
     text-align: center;
     justify-content: center;
+}
+
+/* Mobile: Use mobile-specific background image */
+@media (max-width: 768px) {
+    .home {
+        background-image: url('./public/images/Mobile_Background_img_Home.jpg');
+        background-position: center center;
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        background-image: url('./public/images/Mobile_Background_img_Home.jpg');
+        background-position: center center;
+    }
 }
 
 .home .max-width {
@@ -1880,7 +1895,22 @@ body.dark-mode section {
 body.dark-mode .home {
     background-image: url('./public/images/Background_img_Home.jpg');
     background-size: cover;
-    background-position: center top;
+    background-position: center 30%;
+}
+
+/* Mobile responsive for dark mode home */
+@media (max-width: 768px) {
+    body.dark-mode .home {
+        background-image: url('./public/images/Mobile_Background_img_Home.jpg');
+        background-position: center center;
+    }
+}
+
+@media (max-width: 480px) {
+    body.dark-mode .home {
+        background-image: url('./public/images/Mobile_Background_img_Home.jpg');
+        background-position: center center;
+    }
 }
 
 body.dark-mode .title {
