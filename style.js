@@ -887,22 +887,52 @@ $(document).ready(function() {
 // ============================================================
 (async function loadPortfolioFromAPI() {
     try {
-        // Set admin link URL from env or default
+        // Set admin link URL
         const adminLink = document.getElementById('admin-login-link');
         if (adminLink) {
-            const apiEnv = import.meta.env || {};
-            const apiUrl = apiEnv.VITE_API_URL || 'http://localhost:5000';
-            adminLink.href = apiUrl + '/admin';
+            // Link to the GitHub-hosted admin page
+            const base = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+            adminLink.href = base + 'admin/';
         }
 
-        // Try to fetch from Flask backend API
-        const apiEnv = import.meta.env || {};
-        const apiBaseUrl = apiEnv.VITE_API_URL || 'http://localhost:5000';
-        const res = await fetch(apiBaseUrl + '/api/portfolio', {
-            method: 'GET',
-            headers: { 'Accept': 'application/json' }
-        });
-        if (!res.ok) return; // Fall back to static HTML
+        // Try to fetch portfolio.json from GitHub raw content
+        // This works when deployed to GitHub Pages
+        let apiUrl = '';
+        try {
+            // Detect repo name from current URL
+            const pathParts = window.location.pathname.split('/');
+            const portfolioIndex = pathParts.indexOf('Portfolio');
+            if (portfolioIndex >= 0) {
+                const repoPath = pathParts.slice(1, portfolioIndex + 1).join('/');
+                apiUrl = `https://raw.githubusercontent.com/${repoPath.split('/')[0]}/Portfolio/main`;
+            }
+        } catch(e) {}
+
+        // Try GitHub raw first, then fallback to local API
+        let res = null;
+        if (apiUrl) {
+            try {
+                res = await fetch(apiUrl + '/backend/data/portfolio.json', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!res.ok) res = null;
+            } catch(e) { res = null; }
+        }
+
+        // Fallback to local Flask API
+        if (!res) {
+            try {
+                const apiEnv = import.meta.env || {};
+                const localApi = apiEnv.VITE_API_URL || 'http://localhost:5000';
+                res = await fetch(localApi + '/api/portfolio', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+            } catch(e) {}
+        }
+
+        if (!res || !res.ok) return;
         const data = await res.json();
         if (!data || !data.name) return;
 

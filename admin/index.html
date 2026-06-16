@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin - GitHub CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-page" id="login-page">
+        <div class="login-container">
+            <h1><i class="fab fa-github"></i> GitHub CMS</h1>
+            <p>Connect your GitHub repo to manage portfolio</p>
+            <div class="login-error" id="login-error"></div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>GitHub Token</label>
+                    <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx" required>
+                    <small class="help-text">Fine-grained token with Contents read/write permission</small>
+                </div>
+                <div class="form-group">
+                    <label>Repository</label>
+                    <input type="text" id="repo-name" placeholder="username/repo-name" required value="">
+                </div>
+                <div class="form-group">
+                    <label>Branch</label>
+                    <input type="text" id="branch-name" value="main" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="login-btn">
+                    <i class="fas fa-plug"></i> Connect to GitHub
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fab fa-github"></i> Portfolio CMS</h2>
+                <p id="repo-display">Loading...</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" data-section="profile" class="active"><i class="fas fa-user"></i> Profile</a>
+                <a href="#" data-section="about"><i class="fas fa-info-circle"></i> About Me</a>
+                <a href="#" data-section="skills"><i class="fas fa-cogs"></i> Skills</a>
+                <a href="#" data-section="projects"><i class="fas fa-code"></i> Projects</a>
+                <a href="#" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="#" data-section="certifications"><i class="fas fa-certificate"></i> Certifications</a>
+                <a href="#" data-section="education"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="#" data-section="social"><i class="fas fa-share-alt"></i> Social Links</a>
+                <a href="#" data-section="contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn btn-outline btn-sm" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Disconnect</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                <h1 id="page-title">Profile</h1>
+                <div class="header-actions">
+                    <button class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle Light/Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn btn-success btn-sm" id="save-all-btn" style="display:none">
+                        <i class="fas fa-cloud-upload-alt"></i> Push to GitHub
+                    </button>
+                </div>
+            </header>
+            <div class="content">
+                <div class="notification" id="notification"></div>
+
+                <!-- Profile Section -->
+                <div class="section-panel active" id="section-profile">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-user"></i> Basic Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="field-name" placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <input type="text" id="field-designation" placeholder="e.g. Python Developer">
+                            </div>
+                        </div>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="section-panel" id="section-about">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-info-circle"></i> About Me</h3>
+                        <div class="form-group">
+                            <label>Tagline</label>
+                            <input type="text" id="field-tagline" placeholder="e.g. Python Developer">
+                        </div>
+                        <div class="form-group">
+                            <label>Highlights (one per line)</label>
+                            <textarea id="field-highlights" rows="8" placeholder="Enter highlights, one per line..."></textarea>
+                        </div>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3><i class="fas fa-chart-bar"></i> Stats</h3>
+                        <div id="stats-list"></div>
+                        <button class="add-item-btn" onclick="addStat()"><i class="fas fa-plus"></i> Add Stat</button>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="section-panel" id="section-skills">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-cogs"></i> Skills</h3>
+                        <div id="skills-list"></div>
+                        <button class="add-item-btn" onclick="addSkillCategory()"><i class="fas fa-plus"></i> Add Skill Category</button>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="section-panel" id="section-projects">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-code"></i> Projects</h3>
+                        <div id="projects-list"></div>
+                        <button class="add-item-btn" onclick="addProject()"><i class="fas fa-plus"></i> Add Project</button>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="section-panel" id="section-experience">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                        <div id="experience-list"></div>
+                        <button class="add-item-btn" onclick="addExperience()"><i class="fas fa-plus"></i> Add Experience</button>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications Section -->
+                <div class="section-panel" id="section-certifications">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                        <div id="certifications-list"></div>
+                        <button class="add-item-btn" onclick="addCertification()"><i class="fas fa-plus"></i> Add Certification</button>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="section-panel" id="section-education">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div id="education-list"></div>
+                        <button class="add-item-btn" onclick="addEducation()"><i class="fas fa-plus"></i> Add Education</button>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links Section -->
+                <div class="section-panel" id="section-social">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-share-alt"></i> Social Links</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                                <input type="url" id="field-whatsapp" placeholder="https://wa.me/...">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-linkedin"></i> LinkedIn</label>
+                                <input type="url" id="field-linkedin" placeholder="https://linkedin.com/in/...">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fab fa-github"></i> GitHub</label>
+                                <input type="url" id="field-github" placeholder="https://github.com/...">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-hackerrank"></i> HackerRank</label>
+                                <input type="url" id="field-hackerrank" placeholder="https://hackerrank.com/...">
+                            </div>
+                        </div>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="section-panel" id="section-contact">
+                    <div class="panel-card">
+                        <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="field-contact-name" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="field-contact-location" placeholder="City, State, Country">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="field-contact-email" placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" id="field-contact-phone" placeholder="+91 XXXXXXXXXX">
+                            </div>
+                        </div>
+                        <div class="save-bar">
+                            <button class="btn btn-success" onclick="markDirty()"><i class="fas fa-save"></i> Mark Changed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
