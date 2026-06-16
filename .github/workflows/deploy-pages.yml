@@ -46,6 +46,9 @@ jobs:
           VITE_FLASK_CONTACT_FORM_API_URL: ${{ secrets.VITE_FLASK_CONTACT_FORM_API_URL || vars.VITE_FLASK_CONTACT_FORM_API_URL }}
           VITE_API_KEY: ${{ secrets.VITE_API_KEY || vars.VITE_API_KEY }}
 
+      - name: Copy admin panel to dist
+        run: cp -r admin dist/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
