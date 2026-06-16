@@ -172,7 +172,15 @@ async function pushToGitHub() {
 
         if (!res.ok) {
             const err = await res.json();
-            throw new Error(err.message || 'Push failed');
+            let msg = err.message || 'Push failed';
+            if (res.status === 403) {
+                msg = 'Permission denied. Your token needs "Contents: Read and write" permission. ' +
+                      'Go to github.com/settings/tokens?type=beta → Edit your token → ' +
+                      'Permissions → Contents → set to "Read and write" → Update token.';
+            } else if (res.status === 401) {
+                msg = 'Invalid token. Please generate a new token at github.com/settings/tokens?type=beta';
+            }
+            throw new Error(msg);
         }
 
         const result = await res.json();
