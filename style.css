@@ -2284,13 +2284,17 @@ body.dark-mode .github-extra-sub {
     
     .cta-buttons {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        gap: 15px;
     }
     
     .cta-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         width: 100%;
-        max-width: 300px;
-        justify-content: flex-start;
+        max-width: 280px;
     }
     
     .stats {

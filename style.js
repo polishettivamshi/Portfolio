@@ -342,50 +342,6 @@
 
 
     // ============================================================
-    // COPY EMAIL BUTTON
-    // ============================================================
-    document.querySelectorAll('.info-item').forEach(item => {
-        const heading = item.querySelector('h4');
-        if (heading && heading.textContent.trim() === 'Email') {
-            const infoContent = item.querySelector('.info-content');
-            if (infoContent) {
-                const copyBtn = document.createElement('button');
-                copyBtn.className = 'copy-email-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                copyBtn.title = 'Copy email address';
-                infoContent.appendChild(copyBtn);
-                copyBtn.addEventListener('click', () => {
-                    navigator.clipboard.writeText('polishettivamshi123@gmail.com').then(() => {
-                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                        copyBtn.classList.add('copied');
-                        setTimeout(() => {
-                            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                            copyBtn.classList.remove('copied');
-                        }, 2000);
-                    });
-                });
-            }
-        }
-    });
-
-    const copyStyle = document.createElement('style');
-    copyStyle.textContent = `
-        .copy-email-btn {
-            display: inline-flex; align-items: center; gap: 5px;
-            background: transparent;
-            border: 1px solid rgba(0,209,209,0.4);
-            color: #00D1D1; border-radius: 6px;
-            padding: 3px 10px; font-size: 0.75rem;
-            cursor: none; margin-top: 6px;
-            transition: all 0.2s ease;
-        }
-        .copy-email-btn:hover { background: rgba(0,209,209,0.15); border-color: #00D1D1; }
-        .copy-email-btn.copied { background: rgba(0,209,209,0.2); color: #00ffaa; border-color: #00ffaa; }
-    `;
-    document.head.appendChild(copyStyle);
-
-
-    // ============================================================
     // OPEN TO WORK BADGE
     // ============================================================
     // const homeContent = document.querySelector('.home-content');
@@ -704,14 +660,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = form.querySelector('input[name="email"]').value.trim();
         const message = form.querySelector('textarea[name="message"]').value.trim();
 
-        statusDiv.style.display = 'block';
-        statusDiv.classList.remove('error');
-        statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-        clearTimeout(statusDiv.timer);
+        // Show success immediately
+        updateStatus('Thank you for contacting me. I will get back to you soon!', true);
+        form.reset();
 
         if (!CONTACT_FORM_API_URL || !CONTACT_FORM_API_KEY) {
-            updateStatus('Contact form is not configured. Please try again later.', false);
             return;
         }
 
@@ -731,15 +684,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await res.json();
 
-            if (res.ok && result.success) {
-                updateStatus('Message Sent Successfully!', true);
-                form.reset();
-            } else {
-                updateStatus(result.message || 'Could not send message.', false);
+            // Only show something if the request actually failed
+            if (!res.ok || !result.success) {
+                updateStatus(
+                    result.message || 'Message could not be delivered. Please try again.',
+                    false
+                );
             }
         } catch (err) {
             console.error(err);
-            updateStatus('Network Error. Please try again.', false);
+            updateStatus(
+                'Network error. Your message may not have been delivered.',
+                false
+            );
         }
     });
 });
