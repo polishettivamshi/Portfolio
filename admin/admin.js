@@ -7,7 +7,7 @@ let repoName = '';
 let branchName = 'main';
 let fileSha = '';
 let isDirty = false;
-const JSON_PATH = 'backend/data/portfolio.json';
+const JSON_PATH = 'data/portfolio.json';
 
 // ─── DOM Elements ───
 const loginPage = document.getElementById('login-page');

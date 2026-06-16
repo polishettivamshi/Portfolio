@@ -892,7 +892,7 @@ $(document).ready(function() {
         const GITHUB_USERNAME = 'polishettivamshi';
         const GITHUB_REPO = 'Portfolio';
         const GITHUB_BRANCH = 'main';
-        const JSON_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/${GITHUB_BRANCH}/backend/data/portfolio.json`;
+        const JSON_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/${GITHUB_BRANCH}/data/portfolio.json`;
 
         // Try GitHub raw first
         let res = null;
