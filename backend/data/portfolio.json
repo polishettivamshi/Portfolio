@@ -1,0 +1,456 @@
+{
+  "name": "Vamshi Polishetti",
+  "designation": "Python Developer",
+  "about": {
+    "tagline": "Python Developer",
+    "highlights": [
+      "Developed and maintained scalable backend services using Python, FastAPI, and Flask, supporting high-performance production applications in an Agile environment.",
+      "Designed and managed SQLAlchemy ORM models with SQL Server and PostgreSQL, ensuring efficient and secure data handling.",
+      "Implemented secure authentication and authorization using JWT and API-Key based access control.",
+      "Resolved 500+ JIRA issues, including critical bugs, feature enhancements, and performance optimizations, improving system reliability.",
+      "Successfully delivered two major API projects for the CStoreiQ back-office platform and live data integrations.",
+      "Integrated Elasticsearch for advanced search, logging, and monitoring, improving system observability and debugging efficiency.",
+      "Implemented asynchronous workflows using RabbitMQ, improving system scalability and data processing reliability.",
+      "Developed and optimized complex SQL stored procedures, resulting in improved API response times and database performance.",
+      "Deployed and managed backend services on AWS, ensuring scalable, secure, and highly available infrastructure.",
+      "Implemented Database Connection Pooling to optimize database performance and resource utilization in high-traffic production environments.",
+      "Developed Async Logging Systems for non-blocking application logging, improving application performance and debugging capabilities.",
+      "Configured and managed .env Configuration Management for secure handling of environment variables and application settings across different deployment stages."
+    ],
+    "stats": [
+      {
+        "icon": "fas fa-tasks",
+        "label": "JIRA Issues",
+        "number": "500+"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "label": "Projects",
+        "number": "10+"
+      },
+      {
+        "icon": "fas fa-smile",
+        "label": "Satisfaction",
+        "number": "97%"
+      },
+      {
+        "icon": "fas fa-briefcase",
+        "label": "Years Exp",
+        "number": "2.5+"
+      },
+      {
+        "icon": "fas fa-code",
+        "label": "API Endpoints",
+        "number": "300+"
+      },
+      {
+        "icon": "fas fa-layer-group",
+        "label": "Technologies",
+        "number": "15+"
+      },
+      {
+        "icon": "fas fa-code-branch",
+        "label": "Git Commits",
+        "number": "1,000+"
+      },
+      {
+        "icon": "fas fa-bolt",
+        "label": "Query Optimization",
+        "number": "90%"
+      },
+      {
+        "icon": "fas fa-shield-alt",
+        "label": "Test Coverage",
+        "number": "90%+"
+      },
+      {
+        "icon": "fas fa-sync-alt",
+        "label": "Automation Success",
+        "number": "97%"
+      },
+      {
+        "icon": "fas fa-cloud-upload-alt",
+        "label": "Deployments",
+        "number": "30+"
+      },
+      {
+        "icon": "fas fa-cogs",
+        "label": "Enterprise Modules",
+        "number": "10+"
+      },
+      {
+        "icon": "fas fa-network-wired",
+        "label": "Integrations",
+        "number": "20+"
+      },
+      {
+        "icon": "fas fa-server",
+        "label": "System Uptime",
+        "number": "99.9%"
+      },
+      {
+        "icon": "fas fa-bug",
+        "label": "Bug Reduction",
+        "number": "75%"
+      },
+      {
+        "icon": "fas fa-stopwatch",
+        "label": "Faster Response",
+        "number": "90%"
+      },
+      {
+        "icon": "fas fa-database",
+        "label": "Records Processed",
+        "number": "1M+"
+      },
+      {
+        "icon": "fas fa-users",
+        "label": "Users Served",
+        "number": "10K+"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "icon": "fab fa-python",
+      "title": "Python Stack",
+      "items": [
+        "Python (Primary Language)",
+        "FastAPI, Flask, Django (Intermediate)",
+        "SQLAlchemy ORM",
+        "Pydantic Models",
+        "Database Connection Pooling",
+        "Async Logging Systems",
+        ".env Configuration Management"
+      ]
+    },
+    {
+      "icon": "fas fa-database",
+      "title": "Database & Backend",
+      "items": [
+        "PostgreSQL, SQL Server, MySQL",
+        "Alembic (Database Migrations)",
+        "ELK Stack (Elasticsearch, Logstash, Kibana)",
+        "Grafana",
+        "RabbitMQ (Messaging)",
+        "RESTful API Development",
+        "Database Optimization"
+      ]
+    },
+    {
+      "icon": "fas fa-shield-alt",
+      "title": "Security & Cloud",
+      "items": [
+        "JWT Authentication",
+        "AES Encryption & Decryption",
+        "API-Key Authentication",
+        "AWS (EC2, S3, Lambda, EventBridge, RDS, SQS, SNS, IAM)",
+        "AWS CloudWatch, Secrets Manager",
+        "Secure Configuration"
+      ]
+    },
+    {
+      "icon": "fas fa-code",
+      "title": "Programming Languages",
+      "items": [
+        "Python (Primary)",
+        "Java (Intermediate)",
+        "JavaScript (Intermediate)",
+        "HTML5/CSS3 (Intermediate)",
+        "SQL (Advanced)"
+      ]
+    },
+    {
+      "icon": "fas fa-tools",
+      "title": "Development Tools",
+      "items": [
+        "PyCharm, VS Code",
+        "Postman (API Testing)",
+        "DBeaver (Database GUI)",
+        "SQL Server Management Studio",
+        "Git & GitHub",
+        "Docker (Basic)",
+        "JIRA (Project Management)",
+        "Swagger/OpenAPI"
+      ]
+    },
+    {
+      "icon": "fas fa-tools",
+      "title": "Best Practices",
+      "items": [
+        "Production Deployment",
+        "Scalable Architecture",
+        "Performance Optimization",
+        "Advanced Debugging",
+        "Root Cause Analysis",
+        "Code Maintainability",
+        "Application Monitoring"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "India Emergency Resource Directory",
+      "icon": "fas fa-globe",
+      "image": "images/india-emergency-resource-directory.png",
+      "liveUrl": "https://india-emergency-resource-directory.onrender.com/",
+      "repoUrl": "https://github.com/polishettivamshi/India-Emergency-Resource-Directory",
+      "description": [
+        "Built a full-stack emergency registry for verified India helplines, rescue centers, medical grids, and disaster support networks.",
+        "Implemented state/district hierarchical filtering and fuzzy search for instant access to local crisis services.",
+        "Enabled citizen suggestion submissions with evidence-based auditing and admin review workflows.",
+        "Secured administrative access through .env-driven authentication and restricted control desk capabilities.",
+        "Designed audit verification tags and report flows for dead numbers, misinformation, and invalid entries.",
+        "Delivered a responsive React + Tailwind UI backed by a robust Express API and reliable persistent data store."
+      ],
+      "technologies": "React 19, TypeScript, Tailwind CSS v4, Express, Supabase, Vite, Node.js, Lucide Icons, JSON persistence, .env."
+    },
+    {
+      "title": "Smart Scale Tech Job Bot",
+      "icon": "fas fa-robot",
+      "image": "images/smart-scale-tech-job-bot.png",
+      "liveUrl": "https://scrap-jobs-bot.onrender.com/channels",
+      "repoUrl": "https://github.com/polishettivamshi/scrap-jobs-bot",
+      "description": [
+        "Built an automated job scraping bot that monitors LinkedIn, Naukri, Remotive, WeWorkRemotely, and RemoteOK.",
+        "Filtered roles by category, keyword, and target locations like Hyderabad, Bangalore, Chennai, Pune, and Remote.",
+        "Exposed a Flask trigger API for background scrapes, ideal for Render deployment with external scheduler services.",
+        "Persisted state safely with sent_jobs.json and last_run.json to prevent duplicate Telegram notifications.",
+        "Implemented log rotation and production-safe console output for clean operational monitoring.",
+        "Ensured Telegram compatibility with safe Markdown escaping in notifications."
+      ],
+      "technologies": "Python, Flask, Web Scraping, Telegram Bot API, GitHub state sync, log rotation, JSON persistence."
+    },
+    {
+      "title": "Automated Data Processing and Real-Time Sync Tool",
+      "icon": "fas fa-robot",
+      "image": "images/automated-data-processing-and-real-time-sync-tool.png",
+      "liveUrl": "",
+      "repoUrl": "https://github.com/polishettivamshi",
+      "description": [
+        "Developed a Python automation that reduced manual data processing by 98% through automated workflows.",
+        "Implemented scheduled Cron jobs to fetch, clean, and process data from multiple sources automatically.",
+        "Created real-time data synchronization between different systems using API integrations and database triggers.",
+        "Built comprehensive logging and error handling with automatic alerting for failed processes.",
+        "Designed data validation checks and quality assurance modules to ensure accuracy in automated processing.",
+        "Developed a monitoring dashboard to track automation status, success rates, and performance metrics."
+      ],
+      "technologies": "Python, Cron Jobs, Pandas, SQLAlchemy, PostgreSQL, RabbitMQ, Logging, API Integration."
+    },
+    {
+      "title": "SQL Server to PostgreSQL Data Migration",
+      "icon": "fas fa-database",
+      "image": "images/sql-server-to-postgresql-data-migration.png",
+      "liveUrl": "",
+      "repoUrl": "https://github.com/polishettivamshi",
+      "description": [
+        "Designed and developed a high-performance data migration system to transfer data from SQL Server to PostgreSQL using Python.",
+        "Implemented an asynchronous pipeline to extract data from SQL Server, store it locally as structured JSON, and insert it into PostgreSQL with high accuracy.",
+        "Utilized async processing and asynchronous logging to significantly improve migration speed and reliability.",
+        "Configured environment-based settings using .env files to ensure secure and flexible deployments.",
+        "Reduced manual intervention by enabling table-driven migrations through API inputs."
+      ],
+      "technologies": "Python, SQL Server, PostgreSQL, Pandas, NumPy, AsyncIO, Logging, .env"
+    },
+    {
+      "title": "Weather Dashboard API with External Integration",
+      "icon": "fas fa-cloud-sun",
+      "image": "images/weather-dashboard-api-with-external-integration.png",
+      "liveUrl": "",
+      "repoUrl": "https://github.com/polishettivamshi/Real-Time-Weather-App-Development-using-React-Js-",
+      "description": [
+        "Developed a Django REST API integrating with multiple weather APIs (OpenWeatherMap, WeatherAPI) to provide unified weather data.",
+        "Implemented Redis caching and rate limiting to optimize performance and reduce external API costs by 40%.",
+        "Built user preference system for saving locations and customizing temperature units (Celsius/Fahrenheit).",
+        "Created historical weather endpoints with date filtering and data aggregation for trend analysis.",
+        "Added webhook notifications for severe weather alerts and automated daily forecast emails using Celery."
+      ],
+      "technologies": "Python, Django, Django REST Framework, Redis, Celery, OpenWeatherMap API, PostgreSQL, Docker."
+    },
+    {
+      "title": "Personal Portfolio Website",
+      "icon": "fas fa-laptop-code",
+      "image": "images/personal-portfolio-website.png",
+      "liveUrl": "https://polishettivamshi.github.io/Portfolio/",
+      "repoUrl": "https://github.com/polishettivamshi/Portfolio",
+      "description": [
+        "Built a responsive professional portfolio with a mobile-first approach using HTML5, CSS3, and jQuery.",
+        "Implemented a Real-Time Communication Suite featuring automated email delivery and WhatsApp API integration for instant client messaging.",
+        "Designed interactive UI components with smooth animations and dynamic content loading for enhanced user engagement.",
+        "Utilized CSS Grid/Flexbox and semantic markup to ensure cross-browser compatibility and accessible design."
+      ],
+      "technologies": "HTML5, CSS3, JavaScript, jQuery, WhatsApp Business API, SMTP Integration."
+    },
+    {
+      "title": "Detection of Covid-19 from Chest X-ray using Web Application",
+      "icon": "fas fa-heartbeat",
+      "image": "images/detection-of-covid-19-from-chest-x-ray-using-web-application.png",
+      "liveUrl": "https://covid-19-detection-using-chest-x-rays-ufbvmbl3sefeb7vabdfdjs.streamlit.app/",
+      "repoUrl": "https://github.com/polishettivamshi/Covid-19-detection-using-chest-X-rays",
+      "description": [
+        "Developed a web application to detect whether a chest X-ray image belongs to a COVID-19 patient with high accuracy (97.5%+).",
+        "Used ResNet-50 model for image analysis and Streamlit for real-time frontend interaction.",
+        "Processed each image in 3-5 seconds for fast, reliable results."
+      ],
+      "technologies": "Python, Streamlit, ResNet-50, CNNs."
+    },
+    {
+      "title": "Real-Time RESTful API Backend for E-commerce",
+      "icon": "fas fa-server",
+      "image": "images/real-time-restful-api-backend-for-e-commerce.png",
+      "liveUrl": "",
+      "repoUrl": "https://github.com/polishettivamshi",
+      "description": [
+        "Developed a scalable RESTful API for e-commerce platform using FastAPI to handle products, orders, and user requests in real time.",
+        "Implemented JWT-based authentication and role-based access control.",
+        "Optimized SQLAlchemy queries with PostgreSQL to ensure fast and reliable database operations."
+      ],
+      "technologies": "Python, FastAPI, PostgreSQL, SQLAlchemy, JWT."
+    }
+  ],
+  "experience": [
+    {
+      "company": "Overt Ideas and Solutions",
+      "logo": "images/overt_logo.jpeg",
+      "title": "Software Developer",
+      "type": "Full Time",
+      "duration": "Mar 2026 - Present",
+      "location": "Hyderabad, Telangana, India",
+      "workMode": "On-site",
+      "skills": "Python, FastAPI, AES Encryption & Decryption, Rest API Development, SQLAlchemy ORM Models, Alembic (Database Migrations), API security, MYSQL, Git, GitHub."
+    },
+    {
+      "company": "CStoreiQ",
+      "logo": "images/cstoreiq_logo.jpg",
+      "title": "Junior Software Engineer",
+      "type": "Full Time",
+      "duration": "Feb 2024 - Mar 2026",
+      "location": "Hyderabad, Telangana, India",
+      "workMode": "On-site",
+      "skills": "Python, FastAPI, Flask, SQLAlchemy ORM Models, JWT, API-KEY, Microsoft SQL Server, PostgreSQL, Git, Bitbucket, Elasticsearch, Docker (Basic), RabbitMQ, AWS (EC2, S3, IAM, EventBridge, Lambda, SQS, SNS, RDS, CloudWatch), Agile Methodologies"
+    },
+    {
+      "company": "Saven Technologies",
+      "logo": "images/saven_technologies_limited_india_logo.jpg",
+      "title": "Internship Trainee",
+      "type": "Internship",
+      "duration": "Jan 2024 - Feb 2024",
+      "location": "Hyderabad, Telangana, India",
+      "workMode": "On-site",
+      "skills": "Grafana, Git, Python, Prometheus, Postman API, MySQL, Node.js, Elastic Stack (ELK)"
+    },
+    {
+      "company": "CodeClause",
+      "logo": "images/codeclause_logo.jpg",
+      "title": "Java Development Internship",
+      "type": "Internship",
+      "duration": "Jun 2023 - Jul 2023",
+      "location": "Hyderabad, Telangana, India",
+      "workMode": "Remote",
+      "skills": "Java Swing, SQL Database Administration, MySQL, Core Java, Web Application Development"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Python",
+      "icon": "fab fa-python",
+      "issuer": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/61dc2599ba67"
+    },
+    {
+      "title": "Java",
+      "icon": "fab fa-java",
+      "issuer": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/45d4c9ed09c9"
+    },
+    {
+      "title": "Rest API (Intermediate)",
+      "icon": "fas fa-network-wired",
+      "issuer": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/386a59b076d2"
+    },
+    {
+      "title": "SQL (Advanced)",
+      "icon": "fas fa-database",
+      "issuer": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/bd90b14662aa"
+    },
+    {
+      "title": "React (Basic)",
+      "icon": "fab fa-react",
+      "issuer": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/db6af75d86e8"
+    },
+    {
+      "title": "AWS for Beginners",
+      "icon": "fas fa-cloud",
+      "issuer": "Great Learning",
+      "url": "https://www.mygreatlearning.com/certificate/IPLOEXXA?referrer_code=GLGJ769FNNHTC"
+    },
+    {
+      "title": "Java Programming",
+      "icon": "fab fa-java",
+      "issuer": "Great Learning",
+      "url": "https://www.mygreatlearning.com/certificate/NRORKBLH?referrer_code=GLGJ769FNNHTC"
+    },
+    {
+      "title": "Problem Solving (Intermediate)",
+      "icon": "fas fa-brain",
+      "issuer": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/d16d1fdb805b"
+    }
+  ],
+  "education": [
+    {
+      "degree": "MCA (Master of Computer Applications)",
+      "icon": "fas fa-university",
+      "institution": "Telangana University, Nizamabad",
+      "duration": "Dec 2020 - Sept 2022",
+      "grade": "CGPA: 8.87/10"
+    },
+    {
+      "degree": "B.Sc (MSCS)",
+      "icon": "fas fa-graduation-cap",
+      "institution": "Girraj Government College, Nizamabad",
+      "duration": "Jun 2017 - Sept 2020",
+      "grade": "CGPA: 9.59/10"
+    },
+    {
+      "degree": "Intermediate (MEC)",
+      "icon": "fas fa-school",
+      "institution": "Kshatriya Junior College, Armoor, Nizamabad",
+      "duration": "Jun 2015 - Mar 2017",
+      "grade": "Percentage: 932/1000"
+    },
+    {
+      "degree": "SSC",
+      "icon": "fas fa-school",
+      "institution": "Vidya Jyothi High School, Raigir, Yadadri-Bhuvanagiri",
+      "duration": "Jun 2014 - Mar 2015",
+      "grade": "CGPA: 8.3/10"
+    }
+  ],
+  "socialLinks": {
+    "whatsapp": "https://wa.me/919000859695",
+    "linkedin": "https://www.linkedin.com/in/polishettivamshi/",
+    "github": "https://github.com/polishettivamshi",
+    "hackerrank": "https://www.hackerrank.com/profile/polishettivamsh1"
+  },
+  "contact": {
+    "name": "Vamshi Polishetti",
+    "location": "Hyderabad, Telangana, India",
+    "email": "polishettivamshi123@gmail.com",
+    "phone": "+91 9000859695",
+    "whatsapp": "919000859695"
+  },
+  "profileImage": "images/vamshi.jpg",
+  "resumePdf": "images/Vamshi_Polishetti_Python_Developer_Resume.pdf",
+  "seo": {
+    "description": "Vamshi Polishetti - Python Developer specializing in FastAPI, Backend Engineering, RESTful APIs, and AWS. 2.5+ years of experience building scalable solutions. Portfolio showcasing projects, experience, and skills.",
+    "keywords": "Vamshi, Vamshi Polishetti, Polishetti Vamshi, Polishetti, Python Developer, Backend Developer, FastAPI Developer, AWS Developer, REST API Developer, Software Engineer Hyderabad, Python Backend Engineer, Full Stack Developer",
+    "ogTitle": "Vamshi Polishetti - Python Developer & Backend Engineer",
+    "ogDescription": "Explore my portfolio showcasing backend development, APIs, and AWS projects. 2.5+ years of experience. 500+ JIRA issues resolved. Python | FastAPI | Flask | AWS",
+    "ogImage": "https://polishettivamshi.github.io/Portfolio/images/vamshi.jpg",
+    "ogUrl": "https://polishettivamshi.github.io/Portfolio"
+  }
+}

@@ -401,12 +401,15 @@ section {
 /* About Section */
 .about-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 50px;
 }
 
 .column.left {
     flex: 1;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
 }
 
 .column.left img {
@@ -1717,6 +1720,30 @@ footer::before {
     border-radius: 20px;
     font-size: 0.8rem;
     border: 1px solid rgba(0, 209, 209, 0.2);
+}
+
+/* Admin Login Link */
+.admin-login-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #555;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    margin-left: 12px;
+    opacity: 0.4;
+}
+
+.admin-login-link:hover {
+    background: rgba(0, 209, 209, 0.15);
+    color: #00D1D1;
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .back-to-top {

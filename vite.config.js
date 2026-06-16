@@ -15,4 +15,6 @@ export default defineConfig({
       allow: ['..'],
     },
   },
+  // Expose VITE_ env variables to the client
+  envPrefix: 'VITE_',
 });

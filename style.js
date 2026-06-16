@@ -880,3 +880,233 @@ $(document).ready(function() {
         }
     });
 });
+
+
+// ============================================================
+// DYNAMIC PORTFOLIO LOADER (loads from API/JSON when available)
+// ============================================================
+(async function loadPortfolioFromAPI() {
+    try {
+        // Set admin link URL from env or default
+        const adminLink = document.getElementById('admin-login-link');
+        if (adminLink) {
+            const apiEnv = import.meta.env || {};
+            const apiUrl = apiEnv.VITE_API_URL || 'http://localhost:5000';
+            adminLink.href = apiUrl + '/admin';
+        }
+
+        // Try to fetch from Flask backend API
+        const apiEnv = import.meta.env || {};
+        const apiBaseUrl = apiEnv.VITE_API_URL || 'http://localhost:5000';
+        const res = await fetch(apiBaseUrl + '/api/portfolio', {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) return; // Fall back to static HTML
+        const data = await res.json();
+        if (!data || !data.name) return;
+
+        // ─── Update Name ───
+        const text2 = document.querySelector('.text-2');
+        if (text2 && data.name) text2.textContent = data.name;
+
+        // ─── Update Home Section ───
+        const typing = document.querySelector('.typing');
+        if (typing && data.designation) {
+            // The typing animation will use the new data
+        }
+
+        // ─── Update Resume Link ───
+        if (data.resumePdf) {
+            const resumeLink = document.querySelector('.cta-button[download]');
+            if (resumeLink) resumeLink.href = data.resumePdf;
+        }
+
+        // ─── Update Experience Section ───
+        if (data.experience && data.experience.length > 0) {
+            const expList = document.querySelector('.experience-list');
+            if (expList) {
+                expList.innerHTML = data.experience.map(exp => `
+                    <div class="job-item">
+                        <div class="company-logo">
+                            <img src="${exp.logo}" alt="${exp.company}" onerror="this.style.display='none'">
+                        </div>
+                        <div class="job-info">
+                            <h3 class="job-title">${exp.title}</h3>
+                            <p class="company-name"><b>${exp.company} - ${exp.type}</b></p>
+                            <p class="duration">${exp.duration}</p>
+                            <p class="location">${exp.location} - ${exp.workMode}</p>
+                            <p class="skills"><b>Skills: </b>${exp.skills}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ─── Update About Section ───
+        if (data.about) {
+            const aboutText = document.querySelector('.about-content .column.right .text');
+            if (aboutText && data.about.tagline) {
+                aboutText.innerHTML = `I'm <strong>${data.name.split(' ')[0]}</strong> and I'm a <span class="typing-2"></span>`;
+            }
+
+            const highlightsList = document.querySelector('.ai-summary-list');
+            if (highlightsList && data.about.highlights) {
+                highlightsList.innerHTML = data.about.highlights.map(h =>
+                    `<li><i class="fas fa-bolt"></i> <span>${h}</span></li>`
+                ).join('');
+            }
+
+            // Stats
+            const statsContainer = document.querySelector('.about-content .column.right .stats');
+            if (statsContainer && data.about.stats) {
+                statsContainer.innerHTML = data.about.stats.map(s =>
+                    `<div class="stat-item">
+                        <i class="${s.icon} stat-icon"></i>
+                        <span class="stat-number">${s.number}</span>
+                        <span class="stat-label">${s.label}</span>
+                    </div>`
+                ).join('');
+            }
+        }
+
+        // ─── Update Profile Image ───
+        if (data.profileImage) {
+            const profileImg = document.querySelector('.about-content .column.left img');
+            if (profileImg) profileImg.src = data.profileImage;
+        }
+
+        // ─── Update Projects Section ───
+        if (data.projects && data.projects.length > 0) {
+            const projContent = document.querySelector('.proj-content');
+            if (projContent) {
+                projContent.innerHTML = data.projects.map(proj => `
+                    <div class="card">
+                        <div class="box">
+                            <div class="project-image-wrapper">
+                                <a class="project-image-link ${!proj.liveUrl ? 'no-live' : ''}" href="${proj.liveUrl || '#'}" data-live-url="${proj.liveUrl || ''}" target="_blank" rel="noopener noreferrer" aria-label="${proj.title} live preview">
+                                    <img class="project-image" data-src="${proj.image}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="${proj.title}" loading="lazy">
+                                </a>
+                            </div>
+                            <i class="${proj.icon}"></i>
+                            <div class="text">${proj.title}</div>
+                            <ul class="project-details-list">
+                                ${proj.description.map(d => `<li>${d}</li>`).join('')}
+                                ${proj.repoUrl ? `<li><a class="project-link" href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer">View project repository</a></li>` : ''}
+                                <li><strong>Technologies:</strong> ${proj.technologies}</li>
+                            </ul>
+                        </div>
+                    </div>
+                `).join('');
+                // Re-init project interactions
+                if (typeof initProjectInteractions === 'function') initProjectInteractions();
+            }
+        }
+
+        // ─── Update Skills Section ───
+        if (data.skills && data.skills.length > 0) {
+            const skillsGrid = document.querySelector('.skills-grid');
+            if (skillsGrid) {
+                skillsGrid.innerHTML = data.skills.map(cat => `
+                    <div class="skill-category">
+                        <div class="box">
+                            <i class="${cat.icon}"></i>
+                            <h3>${cat.title}</h3>
+                            <ul class="skill-list">
+                                ${cat.items.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ─── Update Certifications ───
+        if (data.certifications && data.certifications.length > 0) {
+            const certsGrid = document.querySelector('.certificates-grid');
+            if (certsGrid) {
+                certsGrid.innerHTML = data.certifications.map(cert => `
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <i class="${cert.icon}"></i>
+                            <h3>${cert.title}</h3>
+                        </div>
+                        <p class="certificate-issuer">${cert.issuer}</p>
+                        <div class="certificate-link">
+                            <a href="${cert.url}" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ─── Update Education ───
+        if (data.education && data.education.length > 0) {
+            const eduContent = document.querySelector('.education-content');
+            if (eduContent) {
+                eduContent.innerHTML = data.education.map(edu => `
+                    <div class="education-item">
+                        <div class="edu-icon"><i class="${edu.icon}"></i></div>
+                        <div class="edu-details">
+                            <h3>${edu.degree}</h3>
+                            <p class="institution">${edu.institution}</p>
+                            <p class="duration">${edu.duration}</p>
+                            <p class="grade">${edu.grade}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ─── Update Contact Section ───
+        if (data.contact) {
+            const contactInfo = document.querySelector('.contact-info');
+            if (contactInfo) {
+                contactInfo.innerHTML = `
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div class="info-content"><h4>Name</h4><p>${data.contact.name}</p></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="info-content"><h4>Location</h4><p>${data.contact.location}</p></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info-content"><h4>Email</h4><p>${data.contact.email}</p></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="info-content"><h4>Phone</h4><p>${data.contact.phone}</p></div>
+                    </div>
+                `;
+            }
+        }
+
+        // ─── Update Social Links ───
+        if (data.socialLinks) {
+            const socialLinks = document.querySelector('.social-links');
+            if (socialLinks) {
+                socialLinks.innerHTML = `
+                    ${data.socialLinks.whatsapp ? `<a href="${data.socialLinks.whatsapp}" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>` : ''}
+                    ${data.socialLinks.linkedin ? `<a href="${data.socialLinks.linkedin}" class="social-link"><i class="fab fa-linkedin"></i></a>` : ''}
+                    ${data.socialLinks.github ? `<a href="${data.socialLinks.github}" target="_blank" class="social-link"><i class="fab fa-github"></i></a>` : ''}
+                    ${data.socialLinks.hackerrank ? `<a href="${data.socialLinks.hackerrank}" class="social-link"><i class="fab fa-hackerrank"></i></a>` : ''}
+                `;
+            }
+        }
+
+        // ─── Update WhatsApp Float ───
+        if (data.socialLinks && data.socialLinks.whatsapp) {
+            const waLink = document.querySelector('.whatsapp-link');
+            if (waLink) waLink.href = data.socialLinks.whatsapp;
+        }
+
+        console.log('Portfolio loaded from API successfully');
+    } catch (err) {
+        // Silently fall back to static HTML content
+        console.log('Using static HTML content (API not available)');
+    }
+})();
