@@ -141,6 +141,16 @@ body {
 .btn-outline:hover { background: var(--bg-card-hover); border-color: var(--primary); }
 .btn-sm { padding: 8px 16px; font-size: 13px; }
 
+.help-text {
+    display: block;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.5;
+}
+.help-text a { color: var(--primary); text-decoration: none; }
+.help-text a:hover { text-decoration: underline; }
+
 .login-error {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
