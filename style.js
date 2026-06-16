@@ -887,38 +887,22 @@ $(document).ready(function() {
 // ============================================================
 (async function loadPortfolioFromAPI() {
     try {
-        // Set admin link URL
-        const adminLink = document.getElementById('admin-login-link');
-        if (adminLink) {
-            // Link to the GitHub-hosted admin page
-            const base = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
-            adminLink.href = base + 'admin/';
-        }
-
         // Try to fetch portfolio.json from GitHub raw content
         // This works when deployed to GitHub Pages
-        let apiUrl = '';
-        try {
-            // Detect repo name from current URL
-            const pathParts = window.location.pathname.split('/');
-            const portfolioIndex = pathParts.indexOf('Portfolio');
-            if (portfolioIndex >= 0) {
-                const repoPath = pathParts.slice(1, portfolioIndex + 1).join('/');
-                apiUrl = `https://raw.githubusercontent.com/${repoPath.split('/')[0]}/Portfolio/main`;
-            }
-        } catch(e) {}
+        const GITHUB_USERNAME = 'polishettivamshi';
+        const GITHUB_REPO = 'Portfolio';
+        const GITHUB_BRANCH = 'main';
+        const JSON_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/${GITHUB_BRANCH}/backend/data/portfolio.json`;
 
-        // Try GitHub raw first, then fallback to local API
+        // Try GitHub raw first
         let res = null;
-        if (apiUrl) {
-            try {
-                res = await fetch(apiUrl + '/backend/data/portfolio.json', {
-                    method: 'GET',
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (!res.ok) res = null;
-            } catch(e) { res = null; }
-        }
+        try {
+            res = await fetch(JSON_URL, {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            if (!res.ok) res = null;
+        } catch(e) { res = null; }
 
         // Fallback to local Flask API
         if (!res) {
@@ -932,7 +916,10 @@ $(document).ready(function() {
             } catch(e) {}
         }
 
-        if (!res || !res.ok) return;
+        if (!res || !res.ok) {
+            console.log('API/JSON not available, using static content');
+            return;
+        }
         const data = await res.json();
         if (!data || !data.name) return;
 
