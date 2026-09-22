@@ -317,7 +317,7 @@
       "duration": "Mar 2026 - Present",
       "location": "Hyderabad, Telangana, India",
       "workMode": "On-site",
-      "skills": "Python, FastAPI, AES Encryption & Decryption, Rest API Development, SQLAlchemy ORM Models, Alembic (Database Migrations), API security, MYSQL, Git, GitHub."
+      "skills": "Python 3.10+, FastAPI, SQLAlchemy 2.0, Alembic, Pydantic v2, MySQL, JWT Authentication, RBAC (Role-Based Access Control), bcrypt, Passlib, APScheduler, SMTP Email Integration, REST API Development, Third-Party API Integration, Database Design & Migrations, Audit Logging, API Security, Code Refactoring, Debugging & Troubleshooting, Git, GitHub."
     },
     {
       "company": "CStoreiQ",
