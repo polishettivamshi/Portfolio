@@ -140,47 +140,23 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
-        document.querySelectorAll('.project-image-link').forEach(link => {
-            const img = link.querySelector('.project-image');
-            const imgSrc = link.dataset.img || (img && img.dataset.src);
-            const liveUrl = link.dataset.liveUrl && link.dataset.liveUrl.trim();
+        document.querySelectorAll('.project-media .project-image').forEach(img => {
+            const imgSrc = img.dataset.src;
 
-            if (!imgSrc || !img) {
-                const wrapper = link.closest('.project-image-wrapper');
-                if (wrapper) wrapper.remove();
+            if (!imgSrc) {
+                const media = img.closest('.project-media');
+                if (media) media.remove();
                 return;
             }
 
             const loader = new Image();
-            loader.onload = () => {
-                img.src = imgSrc;
-                if (!liveUrl) {
-                    link.classList.add('no-live');
-                    link.removeAttribute('target');
-                    link.removeAttribute('rel');
-                }
-            };
+            loader.onload = () => { img.src = imgSrc; };
             loader.onerror = () => {
                 console.error(`Failed to load project image: ${imgSrc}`);
                 // Optional: set a fallback placeholder image instead of removing the wrapper
                 // img.src = 'images/fallback-placeholder.png';
             };
             loader.src = imgSrc;
-
-            if (liveUrl) {
-                link.href = liveUrl;
-                link.dataset.liveUrl = liveUrl;
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
-                const altText = img.alt || img.title || 'Project';
-                link.setAttribute('aria-label', `${altText} live preview`);
-                link.classList.remove('no-live');
-            } else {
-                link.addEventListener('click', event => {
-                    event.preventDefault();
-                    alert('No data found');
-                });
-            }
         });
     }
 
@@ -227,7 +203,7 @@
                 <div class="github-detail-item">
                     <i class="fab fa-github"></i>
                     <span><strong>${githubUsername}</strong></span>
-                    <span class="github-extra-sub">2.5+ years · Backend · Open Source</span>
+                    <span class="github-extra-sub">2.9+ years · Backend · Open Source</span>
                 </div>
                 <div class="github-detail-item">
                     <i class="fas fa-code-branch"></i>
@@ -567,6 +543,18 @@
         .project-card:hover{box-shadow:0 20px 50px rgba(0,209,209,.18) !important;}
     `;
     document.head.appendChild(tiltStyle);
+    // Delegated handler for project "Details" toggle (works for dynamic cards too)
+    document.addEventListener('click', e => {
+        const toggle = e.target.closest('.project-btn.details-toggle');
+        if (!toggle) return;
+        const card = toggle.closest('.card');
+        const more = card && card.querySelector('.project-more');
+        if (!more) return;
+        const isOpen = more.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.innerHTML = isOpen ? 'Hide <i class="fas fa-chevron-up"></i>' : 'Details <i class="fas fa-chevron-down"></i>';
+    });
+
     document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('mousemove', e => {
             const r = card.getBoundingClientRect();
@@ -997,24 +985,38 @@ $(document).ready(function() {
         if (data.projects && data.projects.length > 0) {
             const projContent = document.querySelector('.proj-content');
             if (projContent) {
-                projContent.innerHTML = data.projects.map(proj => `
+                projContent.innerHTML = data.projects.map(proj => {
+                    const techList = (proj.technologies || '').split(',').map(t => t.trim()).filter(Boolean);
+                    return `
                     <div class="card">
                         <div class="box">
-                            <div class="project-image-wrapper">
-                                <a class="project-image-link ${!proj.liveUrl ? 'no-live' : ''}" href="${proj.liveUrl || '#'}" data-live-url="${proj.liveUrl || ''}" target="_blank" rel="noopener noreferrer" aria-label="${proj.title} live preview">
-                                    <img class="project-image" data-src="${proj.image}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="${proj.title}" loading="lazy">
-                                </a>
+                            <div class="project-media">
+                                <img class="project-image" data-src="${proj.image}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="${proj.title}" loading="lazy">
+                                <div class="project-media-overlay">
+                                    <div class="project-media-icon"><i class="${proj.icon}"></i></div>
+                                    <h3 class="project-title-new">${proj.title}</h3>
+                                </div>
                             </div>
-                            <i class="${proj.icon}"></i>
-                            <div class="text">${proj.title}</div>
-                            <ul class="project-details-list">
-                                ${proj.description.map(d => `<li>${d}</li>`).join('')}
-                                ${proj.repoUrl ? `<li><a class="project-link" href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer">View project repository</a></li>` : ''}
-                                <li><strong>Technologies:</strong> ${proj.technologies}</li>
-                            </ul>
+                            <div class="project-body">
+                                <p class="project-short">${(proj.description && proj.description[0]) || ''}</p>
+                                <div class="project-tech">
+                                    ${techList.map(t => `<span>${t}</span>`).join('')}
+                                </div>
+                                <div class="project-actions">
+                                    ${proj.liveUrl ? `<a class="project-btn demo" href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer"><i class="fas fa-rocket"></i> Live Demo</a>` : ''}
+                                    ${proj.repoUrl ? `<a class="project-btn" href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>` : ''}
+                                    ${proj.description && proj.description.length > 1 ? `<button type="button" class="project-btn details-toggle">Details <i class="fas fa-chevron-down"></i></button>` : ''}
+                                </div>
+                                ${proj.description && proj.description.length > 1 ? `
+                                <div class="project-more">
+                                    <ul class="project-details-list">
+                                        ${proj.description.slice(1).map(d => `<li>${d}</li>`).join('')}
+                                    </ul>
+                                </div>` : ''}
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    </div>`;
+                }).join('');
                 // Re-init project interactions
                 if (typeof initProjectInteractions === 'function') initProjectInteractions();
             }
@@ -1030,7 +1032,7 @@ $(document).ready(function() {
                             <i class="${cat.icon}"></i>
                             <h3>${cat.title}</h3>
                             <ul class="skill-list">
-                                ${cat.items.map(s => `<li>${s}</li>`).join('')}
+                                ${cat.items.map(s => `<li>${typeof s === 'string' ? s : (s.name || '')}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
@@ -1071,6 +1073,7 @@ $(document).ready(function() {
                             <p class="institution">${edu.institution}</p>
                             <p class="duration">${edu.duration}</p>
                             <p class="grade">${edu.grade}</p>
+                            ${edu.award ? `<p class="grade gold-medal"><i class="fas fa-medal"></i> ${edu.award}</p>` : ''}
                         </div>
                     </div>
                 `).join('');

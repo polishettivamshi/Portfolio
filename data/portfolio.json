@@ -7,7 +7,7 @@
       "Developed and maintained scalable backend services using Python, FastAPI, and Flask, supporting high-performance production applications in an Agile environment.",
       "Designed and managed SQLAlchemy ORM models with SQL Server and PostgreSQL, ensuring efficient and secure data handling.",
       "Implemented secure authentication and authorization using JWT and API-Key based access control.",
-      "Resolved 500+ JIRA issues, including critical bugs, feature enhancements, and performance optimizations, improving system reliability.",
+      "Resolved 1500+ JIRA issues, including critical bugs, feature enhancements, and performance optimizations, improving system reliability.",
       "Successfully delivered two major API projects for the CStoreiQ back-office platform and live data integrations.",
       "Integrated Elasticsearch for advanced search, logging, and monitoring, improving system observability and debugging efficiency.",
       "Implemented asynchronous workflows using RabbitMQ, improving system scalability and data processing reliability.",
@@ -21,7 +21,7 @@
       {
         "icon": "fas fa-tasks",
         "label": "JIRA Issues",
-        "number": "500+"
+        "number": "1500+"
       },
       {
         "icon": "fas fa-rocket",
@@ -36,12 +36,12 @@
       {
         "icon": "fas fa-briefcase",
         "label": "Years Exp",
-        "number": "2.5+"
+        "number": "2.9+"
       },
       {
         "icon": "fas fa-code",
         "label": "API Endpoints",
-        "number": "300+"
+        "number": "11500+"
       },
       {
         "icon": "fas fa-layer-group",
@@ -56,17 +56,17 @@
       {
         "icon": "fas fa-bolt",
         "label": "Query Optimization",
-        "number": "90%"
+        "number": "97%"
       },
       {
         "icon": "fas fa-shield-alt",
         "label": "Test Coverage",
-        "number": "90%+"
+        "number": "95%+"
       },
       {
         "icon": "fas fa-sync-alt",
         "label": "Automation Success",
-        "number": "97%"
+        "number": "98%"
       },
       {
         "icon": "fas fa-cloud-upload-alt",
@@ -91,12 +91,12 @@
       {
         "icon": "fas fa-bug",
         "label": "Bug Reduction",
-        "number": "75%"
+        "number": "95%"
       },
       {
         "icon": "fas fa-stopwatch",
         "label": "Faster Response",
-        "number": "90%"
+        "number": "97%"
       },
       {
         "icon": "fas fa-database",
@@ -406,7 +406,8 @@
       "icon": "fas fa-university",
       "institution": "Telangana University, Nizamabad",
       "duration": "Dec 2020 - Sept 2022",
-      "grade": "CGPA: 8.87/10"
+      "grade": "CGPA: 8.87/10",
+      "award": "🏆 Gold Medal"
     },
     {
       "degree": "B.Sc (MSCS)",
@@ -446,10 +447,10 @@
   "profileImage": "images/vamshi.jpg",
   "resumePdf": "images/Vamshi_Polishetti_Python_Developer_Resume.pdf",
   "seo": {
-    "description": "Vamshi Polishetti - Python Developer specializing in FastAPI, Backend Engineering, RESTful APIs, and AWS. 2.5+ years of experience building scalable solutions. Portfolio showcasing projects, experience, and skills.",
+    "description": "Vamshi Polishetti - Python Developer specializing in FastAPI, Backend Engineering, RESTful APIs, and AWS. 2.9+ years of experience building scalable solutions. Portfolio showcasing projects, experience, and skills.",
     "keywords": "Vamshi, Vamshi Polishetti, Polishetti Vamshi, Polishetti, Python Developer, Backend Developer, FastAPI Developer, AWS Developer, REST API Developer, Software Engineer Hyderabad, Python Backend Engineer, Full Stack Developer",
     "ogTitle": "Vamshi Polishetti - Python Developer & Backend Engineer",
-    "ogDescription": "Explore my portfolio showcasing backend development, APIs, and AWS projects. 2.5+ years of experience. 500+ JIRA issues resolved. Python | FastAPI | Flask | AWS",
+    "ogDescription": "Explore my portfolio showcasing backend development, APIs, and AWS projects. 2.9+ years of experience. 1500+ JIRA issues resolved. Python | FastAPI | Flask | AWS",
     "ogImage": "https://polishettivamshi.github.io/Portfolio/images/vamshi.jpg",
     "ogUrl": "https://polishettivamshi.github.io/Portfolio"
   }

@@ -670,6 +670,15 @@ section {
     cursor: pointer;
     position: relative;
     border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.card .box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
 }
 
 /* Hover Effect - Same as Skills & Certificates */
@@ -764,6 +773,183 @@ section {
 
 .project-image-wrapper {
     margin-bottom: 16px;
+}
+
+/* ===== Modern Project Card Design ===== */
+.project-media {
+    position: relative;
+    margin: -20px -20px 16px -20px;
+    overflow: hidden;
+    min-height: 170px;
+    background: linear-gradient(135deg, #0d2b2b, #06393a);
+}
+
+.project-media .project-image {
+    width: 100%;
+    min-height: 170px;
+    max-height: 200px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.4s ease;
+    filter: brightness(0.85);
+}
+
+.project-media-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    background: linear-gradient(180deg, rgba(6, 40, 41, 0.05) 25%, rgba(4, 24, 25, 0.88) 100%);
+}
+
+.project-media-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(0, 209, 209, 0.18);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 209, 209, 0.35);
+}
+
+.project-media-icon i {
+    font-size: 1.3rem;
+    color: #00D1D1;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.project-media-overlay .project-title-new {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease;
+}
+
+.card:hover .project-media .project-image {
+    transform: scale(1.05);
+    filter: brightness(1);
+}
+
+.card:hover .project-media-overlay .project-title-new {
+    color: #00D1D1;
+}
+
+.project-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-short {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 12px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.project-tech span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #007a7a;
+    background: rgba(0, 209, 209, 0.12);
+    border: 1px solid rgba(0, 209, 209, 0.3);
+    padding: 3px 10px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.project-tech span:hover {
+    background: #00D1D1;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(0, 209, 209, 0.4);
+    background: transparent;
+    color: #009b9b;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.project-btn i {
+    font-size: 0.85rem;
+    margin: 0;
+    color: inherit;
+}
+
+.project-btn:hover {
+    background: #00D1D1;
+    color: #fff;
+    border-color: #00D1D1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 209, 209, 0.3);
+}
+
+.project-btn.demo {
+    background: linear-gradient(135deg, #00D1D1, #00a8a8);
+    border-color: transparent;
+    color: #fff;
+}
+
+.project-btn.details-toggle {
+    margin-left: auto;
+}
+
+.project-btn.details-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.project-btn.details-toggle.open i {
+    transform: rotate(180deg);
+}
+
+.project-more {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease;
+}
+
+.project-more.open {
+    max-height: 600px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(0, 209, 209, 0.35);
 }
 
 .project-image-link {
@@ -1126,6 +1312,35 @@ section {
     background: #00D1D1;
     color: white;
     transform: scale(1.05);
+}
+
+/* Gold Medal highlight */
+.gold-medal {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+    color: #4a2c00 !important;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(255, 165, 0, 0.45);
+    animation: goldPulse 2s ease-in-out infinite;
+}
+
+.gold-medal i {
+    color: #b8860b;
+}
+
+@keyframes goldPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 2px 10px rgba(255, 165, 0, 0.45); }
+    50% { transform: scale(1.05); box-shadow: 0 4px 18px rgba(255, 200, 0, 0.65); }
+}
+
+.education-item:hover .gold-medal {
+    background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+    color: #4a2c00 !important;
 }
 
 /* Optional: Add shine effect on hover */
@@ -1995,6 +2210,34 @@ body.dark-mode .stat-item:hover .stat-label {
 
 body.dark-mode .projects {
     background-color: #111;
+}
+
+/* Dark mode for modern project cards */
+body.dark-mode .project-short {
+    color: #b0b0b0;
+}
+
+body.dark-mode .project-tech span {
+    color: #00D1D1;
+    background: rgba(0, 209, 209, 0.1);
+}
+
+body.dark-mode .project-tech span:hover {
+    background: #00D1D1;
+    color: #111;
+}
+
+body.dark-mode .project-btn {
+    color: #00D1D1;
+}
+
+body.dark-mode .project-btn:hover {
+    color: #111;
+}
+
+body.dark-mode .project-btn.demo,
+body.dark-mode .project-btn.demo:hover {
+    color: #fff;
 }
 
 body.dark-mode .card {
