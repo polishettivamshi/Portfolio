@@ -609,6 +609,14 @@ section {
         flex: none;
         width: 100%;
     }
+
+    /* Columns are stacked at this width, so the sticky column would stay
+       pinned at the top and the next column would scroll over it. */
+    .column.left {
+        position: static;
+        top: auto;
+        align-self: auto;
+    }
     
     .column.left img {
         max-width: 300px;
