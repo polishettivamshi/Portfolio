@@ -400,16 +400,21 @@ function renderExperience() {
                 <div class="form-group"><label>Location</label><input type="text" value="${e.location||''}" onchange="updateExp(${i},'location',this.value)"></div>
                 <div class="form-group"><label>Logo</label><input type="text" value="${e.logo||''}" onchange="updateExp(${i},'logo',this.value)"></div>
             </div>
+            <div class="form-group"><label>Key Highlights (one per line)</label><textarea class="desc-textarea" onchange="updateExpHighlights(${i},this.value)">${(e.highlights||[]).join('\n')}</textarea></div>
             <div class="form-group"><label>Skills</label><textarea class="desc-textarea" onchange="updateExp(${i},'skills',this.value)">${e.skills||''}</textarea></div>
         </div>
     `).join('');
 }
 function addExperience() {
     if (!portfolioData.experience) portfolioData.experience = [];
-    portfolioData.experience.push({ title: '', company: '', type: '', duration: '', location: '', workMode: '', logo: '', skills: '' });
+    portfolioData.experience.push({ title: '', company: '', type: '', duration: '', location: '', workMode: '', logo: '', highlights: [], skills: '' });
     renderExperience(); markDirty();
 }
 function updateExp(i, f, v) { portfolioData.experience[i][f] = v; markDirty(); }
+function updateExpHighlights(i, v) {
+    portfolioData.experience[i].highlights = v.split('\n').map(s => s.trim()).filter(Boolean);
+    markDirty();
+}
 function removeExp(i) { portfolioData.experience.splice(i, 1); renderExperience(); markDirty(); }
 
 // ─── Certifications ───

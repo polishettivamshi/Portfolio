@@ -226,144 +226,226 @@ section {
 
 
 
-/* Experience Section - Updated with Card Hover Effects */
-/* Experience Section - Updated with Card Hover Effects */
+/* ============================================================
+   EXPERIENCE SECTION - Timeline Redesign
+   ============================================================ */
 .experience {
     background: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+/* soft ambient glows for depth */
+.experience::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -120px;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(0, 209, 209, 0.15) 0%, rgba(0, 209, 209, 0) 70%);
+    pointer-events: none;
+}
+
+.experience::after {
+    content: '';
+    position: absolute;
+    bottom: -180px;
+    left: -140px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.13) 0%, rgba(108, 99, 255, 0) 70%);
+    pointer-events: none;
+}
+
+.experience .max-width {
+    position: relative;
+    z-index: 1;
+}
+
+.experience-subtitle {
+    text-align: center;
+    color: #666;
+    max-width: 720px;
+    margin: -32px auto 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.experience-subtitle b {
+    color: #00a8a8;
+    font-weight: 600;
+}
+
+/* ---------- Stats strip ---------- */
+.experience-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+    margin: 38px 0 58px;
+}
+
+.exp-stat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid rgba(0, 209, 209, 0.18);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.exp-stat:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0, 209, 209, 0.18);
+    border-color: rgba(0, 209, 209, 0.55);
+}
+
+.exp-stat i {
+    font-size: 1.6rem;
+    color: #00D1D1;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.exp-stat:hover i {
+    transform: scale(1.15) rotate(-6deg);
+}
+
+.exp-stat-num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.2;
+}
+
+.exp-stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #777;
+    letter-spacing: 0.2px;
+}
+
+/* ---------- Timeline scaffold ---------- */
+.experience-timeline {
+    position: relative;
+    padding-left: 64px;
+}
+
+.timeline-rail {
+    position: absolute;
+    left: 24px;
+    top: 16px;
+    bottom: 16px;
+    width: 3px;
+    border-radius: 3px;
+    background: rgba(0, 209, 209, 0.18);
+    overflow: hidden;
+}
+
+/* gradient fill that grows as you scroll (set by JS) */
+.timeline-rail::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--rail-progress, 0%);
+    background: linear-gradient(180deg, #00D1D1, #6C63FF);
+    border-radius: 3px;
+    transition: height 0.45s ease;
 }
 
 .experience-list {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 26px;
 }
 
 .job-item {
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    transition: all 0.3s ease;
-    cursor: pointer;
     position: relative;
-    overflow: hidden;
-    border: 2px solid transparent;
+    display: block;
+    transition: transform 0.35s ease;
 }
 
-/* Hover Effect - Same as Skills, Certificates & Projects */
-.job-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 209, 209, 0.2);
-}
-
-.company-logo {
-    width: 70px;
-    height: 70px;
+/* node sitting on the rail */
+.timeline-node {
+    position: absolute;
+    left: -64px;
+    top: 26px;
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #00D1D1;
+    color: #00D1D1;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    font-size: 1rem;
+    z-index: 2;
+    box-shadow: 0 0 0 6px #f8f9fa;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-item:hover .timeline-node {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 6px #f8f9fa, 0 0 0 11px rgba(0, 209, 209, 0.14);
+}
+
+/* current role: filled node + pulsing ring */
+.job-item.is-current .timeline-node {
+    background: linear-gradient(135deg, #00D1D1, #6C63FF);
+    border-color: #fff;
+    color: #fff;
+    box-shadow: 0 0 0 6px #f8f9fa, 0 0 24px rgba(0, 209, 209, 0.55);
+}
+
+.job-item.is-current .timeline-node::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 209, 209, 0.6);
+    animation: expNodePulse 2.2s ease-out infinite;
+}
+
+@keyframes expNodePulse {
+    0% { transform: scale(1); opacity: 0.85; }
+    70% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ---------- Card ---------- */
+.job-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-left: 4px solid #e9ecef;
+    border-radius: 16px;
+    padding: 26px 28px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-.job-item:hover .company-logo {
-    transform: scale(1.1);
+.job-item:hover .job-card {
+    transform: translateY(-6px);
+    border-left-color: #00D1D1;
+    border-color: rgba(0, 209, 209, 0.25);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 209, 209, 0.08);
 }
 
-.company-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
+.job-item.is-current .job-card {
+    border-left-color: #00D1D1;
+    background: linear-gradient(135deg, #ffffff 0%, #f4fdfd 100%);
 }
 
-.job-info {
-    flex: 1;
-}
-
-.job-title {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.company-name {
-    color: #00D1D1;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-}
-
-.duration {
-    color: #666;
-    margin-bottom: 8px;
-    font-size: 1.0rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.duration::before {
-    content: '📅';
-    font-size: 0.8rem;
-}
-
-.location {
-    color: #666;
-    margin-bottom: 10px;
-    font-size: 1.0rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.location::before {
-    content: '📍';
-    font-size: 0.8rem;
-}
-
-.description {
-    color: #555;
-    margin: 10px 0;
-    line-height: 1.5;
-}
-
-/* Fixed: Skills styling inside job items */
-.job-item .skills {
-    color: #333;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background: rgba(0, 209, 209, 0.1);
-    border-radius: 10px;
-    display: inline-block;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.job-item:hover .skills {
-    background: #00D1D1;
-    color: #333; /* Changed from white to dark color for visibility */
-    transform: scale(1.02);
-}
-
-.job-item .skills b {
-    font-weight: 600;
-    color: #00D1D1;
-}
-
-.job-item:hover .skills b {
-    color: #fff; /* Bold text becomes white on hover */
-}
-
-/* Optional: Add a subtle gradient effect on hover */
-.job-item::before {
+/* gradient top bar on hover */
+.job-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -373,27 +455,295 @@ section {
     background: linear-gradient(90deg, #00D1D1, #6C63FF);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
-.job-item:hover::before {
+.job-item:hover .job-card::before {
     transform: scaleX(1);
 }
 
-/* Optional: Add a shine effect */
-.job-item::after {
+/* soft teal wash on hover */
+.job-card::after {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 50%;
+    right: 0;
+    width: 260px;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.7s ease;
+    background: radial-gradient(circle at 100% 0%, rgba(0, 209, 209, 0.09), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
-.job-item:hover::after {
-    left: 100%;
+.job-item:hover .job-card::after {
+    opacity: 1;
+}
+
+/* ---------- Card head ---------- */
+.job-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.company-logo {
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid rgba(0, 209, 209, 0.22);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.job-item:hover .company-logo {
+    transform: scale(1.08) rotate(-3deg);
+    border-color: rgba(0, 209, 209, 0.6);
+    box-shadow: 0 10px 24px rgba(0, 209, 209, 0.25);
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.job-headings {
+    flex: 1;
+    min-width: 0;
+}
+
+.job-head-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.job-title {
+    font-size: 1.32rem;
+    color: #222;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.job-item:hover .job-title {
+    color: #00a8a8;
+}
+
+.company-name {
+    color: #00D1D1;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 5px 0 0;
+    transition: color 0.3s ease;
+}
+
+/* ---------- Badges ---------- */
+.job-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #00D1D1, #00a8a8);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 209, 209, 0.35);
+    white-space: nowrap;
+}
+
+.job-badge i {
+    font-size: 0.5rem;
+    animation: expBadgeBlink 1.8s ease-in-out infinite;
+}
+
+.job-badge.internship {
+    background: linear-gradient(135deg, #6C63FF, #4f46e5);
+    box-shadow: 0 4px 12px rgba(108, 99, 255, 0.35);
+}
+
+.job-badge.internship i {
+    font-size: 0.7rem;
+    animation: none;
+}
+
+@keyframes expBadgeBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+/* ---------- Meta pills ---------- */
+.job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    z-index: 1;
+}
+
+.job-meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 209, 209, 0.08);
+    border: 1px solid rgba(0, 209, 209, 0.2);
+    color: #555;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.86rem;
+    transition: all 0.3s ease;
+}
+
+.job-meta li i {
+    color: #00D1D1;
+    font-size: 0.8rem;
+}
+
+.job-meta li:hover {
+    background: #00D1D1;
+    border-color: #00D1D1;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 209, 209, 0.3);
+}
+
+.job-meta li:hover i {
+    color: #fff;
+}
+
+.job-description {
+    position: relative;
+    z-index: 1;
+    color: #555;
+    font-style: italic;
+    margin: 16px 0 0;
+    line-height: 1.6;
+}
+
+/* ---------- Highlights ---------- */
+.job-highlights {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.job-highlights li {
+    position: relative;
+    padding-left: 28px;
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.job-highlights li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0, 209, 209, 0.14);
+    color: #00a8a8;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.job-highlights li:hover {
+    color: #00a8a8;
+    transform: translateX(4px);
+}
+
+.job-highlights li:hover::before {
+    background: #00D1D1;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 209, 209, 0.4);
+}
+
+/* ---------- Tech chips ---------- */
+.job-skills {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px dashed rgba(0, 209, 209, 0.3);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.job-skills-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #00a8a8;
+    padding-top: 6px;
+    flex-shrink: 0;
+}
+
+.skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.skill-chips span {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid rgba(0, 209, 209, 0.28);
+    color: #0a8f8f;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    line-height: 1.5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    cursor: default;
+}
+
+.skill-chips span:hover {
+    background: linear-gradient(135deg, #00D1D1, #00a8a8);
+    border-color: transparent;
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0, 209, 209, 0.35);
 }
 
 
@@ -1290,7 +1640,9 @@ section {
     font-size: 1.1rem;
 }
 
-.duration {
+/* Scoped to Education so it doesn't leak into the Experience timeline
+   (the global version also forced a dark colour + emoji calendar) */
+.education-item .duration {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 5px;
@@ -1299,7 +1651,7 @@ section {
     gap: 5px;
 }
 
-.duration::before {
+.education-item .duration::before {
     content: '📅';
     font-size: 0.8rem;
 }
@@ -2171,18 +2523,126 @@ body.dark-mode .experience {
     background: #111;
 }
 
-body.dark-mode .job-item {
+body.dark-mode .experience::before {
+    background: radial-gradient(circle, rgba(0, 209, 209, 0.10) 0%, rgba(0, 209, 209, 0) 70%);
+}
+
+body.dark-mode .experience::after {
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.10) 0%, rgba(108, 99, 255, 0) 70%);
+}
+
+body.dark-mode .experience-subtitle {
+    color: #999;
+}
+
+body.dark-mode .experience-subtitle b {
+    color: #00D1D1;
+}
+
+body.dark-mode .exp-stat {
+    background: #1a1a1a;
+    border-color: rgba(0, 209, 209, 0.2);
+}
+
+body.dark-mode .exp-stat-num {
+    color: #e0e0e0;
+}
+
+body.dark-mode .exp-stat-label {
+    color: #999;
+}
+
+body.dark-mode .timeline-rail {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .timeline-node {
+    background: #1a1a1a;
+    border-color: #00D1D1;
+    color: #00D1D1;
+    box-shadow: 0 0 0 6px #111;
+}
+
+body.dark-mode .job-item:hover .timeline-node {
+    box-shadow: 0 0 0 6px #111, 0 0 0 11px rgba(0, 209, 209, 0.2);
+}
+
+body.dark-mode .job-item.is-current .timeline-node {
+    border-color: #00D1D1;
+    box-shadow: 0 0 0 6px #111, 0 0 24px rgba(0, 209, 209, 0.5);
+}
+
+body.dark-mode .job-card {
     background: #1a1a1a;
     color: #e0e0e0;
+    border-color: rgba(255, 255, 255, 0.08);
+    border-left-color: #2a2a2a;
+}
+
+body.dark-mode .job-item.is-current .job-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #16282a 100%);
+    border-left-color: #00D1D1;
+}
+
+body.dark-mode .job-item:hover .job-card {
+    border-color: rgba(0, 209, 209, 0.35);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 body.dark-mode .job-item .job-title {
     color: #e0e0e0;
 }
 
-body.dark-mode .job-item .skills {
-    background: rgba(0, 209, 209, 0.15);
-    color: #e0e0e0;
+body.dark-mode .job-item:hover .job-title {
+    color: #00D1D1;
+}
+
+body.dark-mode .company-logo {
+    background: #141414;
+    border-color: rgba(0, 209, 209, 0.25);
+}
+
+body.dark-mode .job-meta li {
+    background: rgba(0, 209, 209, 0.1);
+    border-color: rgba(0, 209, 209, 0.25);
+    color: #ccc;
+}
+
+/* Duration / location carry their own colour, so force white in dark mode */
+body.dark-mode .job-meta li .duration,
+body.dark-mode .job-meta li .location {
+    color: #fff;
+}
+
+body.dark-mode .job-description {
+    color: #bbb;
+}
+
+body.dark-mode .job-highlights li {
+    color: #ccc;
+}
+
+body.dark-mode .job-highlights li:hover {
+    color: #00D1D1;
+}
+
+body.dark-mode .job-highlights li::before {
+    background: rgba(0, 209, 209, 0.18);
+    color: #00D1D1;
+}
+
+body.dark-mode .job-skills {
+    border-top-color: rgba(0, 209, 209, 0.25);
+}
+
+body.dark-mode .job-skills-label {
+    color: #00D1D1;
+}
+
+body.dark-mode .skill-chips span {
+    background: #141414;
+    border-color: rgba(0, 209, 209, 0.3);
+    color: #00D1D1;
 }
 
 body.dark-mode .about-content .column.right {
@@ -2579,9 +3039,66 @@ body.dark-mode .github-extra-sub {
         gap: 10px;
     }
     
-    .job-item {
+    /* Experience timeline - compact layout on small screens */
+    .experience-timeline {
+        padding-left: 46px;
+    }
+
+    .timeline-rail {
+        left: 16px;
+    }
+
+    .timeline-node {
+        left: -46px;
+        width: 34px;
+        height: 34px;
+        font-size: 0.75rem;
+        border-width: 2px;
+        top: 24px;
+    }
+
+    .job-item:hover .timeline-node {
+        box-shadow: 0 0 0 6px #f8f9fa, 0 0 0 9px rgba(0, 209, 209, 0.14);
+    }
+
+    .job-card {
+        padding: 20px;
+    }
+
+    .job-head {
+        gap: 14px;
+    }
+
+    .company-logo {
+        width: 58px;
+        height: 58px;
+        padding: 6px;
+    }
+
+    .job-title {
+        font-size: 1.15rem;
+    }
+
+    .job-meta li {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+    }
+
+    .job-highlights li {
+        font-size: 0.9rem;
+    }
+
+    .job-skills {
         flex-direction: column;
-        text-align: center;
+        gap: 10px;
+    }
+
+    .exp-stat {
+        padding: 13px 15px;
+    }
+
+    .exp-stat-num {
+        font-size: 1.3rem;
     }
     
     .education-item {

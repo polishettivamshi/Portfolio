@@ -1,4 +1,110 @@
 // ============================================================
+// SHARED HELPERS
+// ============================================================
+
+// Escape untrusted values before injecting them via innerHTML.
+function escapeHTML(value) {
+    if (value === null || value === undefined) return '';
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+// Re-runnable so it also works for cards injected after page load.
+let experienceRevealObserver = null;
+function initExperienceReveal() {
+    const items = document.querySelectorAll('.experience .job-item, .experience .exp-stat');
+    if (!items.length) return;
+
+    if (!experienceRevealObserver) {
+        experienceRevealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    experienceRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+    }
+
+    items.forEach((el, i) => {
+        if (el.dataset.expRevealBound) return;
+        el.dataset.expRevealBound = '1';
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(i % 6) * 0.09}s`;
+        experienceRevealObserver.observe(el);
+    });
+}
+
+// Technologies to emphasise in the About summary. The portfolio JSON stores
+// plain text (so the admin CMS textarea stays clean), so the bold markup the
+// static HTML has is re-applied here at render time. This keeps the
+// API-rendered and static versions of the About section identical.
+const TECH_TERMS = [
+    'RBAC (Role-Based Access Control)', 'SQLAlchemy 2.0', 'Microsoft SQL Server',
+    'Python 3.10+', 'Pydantic v2', 'Third-Party API', 'SQLAlchemy ORM',
+    'Elasticsearch', 'PostgreSQL', 'APScheduler', 'Passlib', 'Bitbucket',
+    'RabbitMQ', 'Prometheus', 'refactoring', 'Postman', 'Docker', 'FastAPI',
+    'API security', 'audit logging', 'SQL Server', 'troubleshooting',
+    'Flask', 'Alembic', 'bcrypt', 'Grafana', 'MySQL', 'Node.js', 'Java Swing',
+    'Core Java', 'migration', 'migrations', 'SQLAlchemy', 'SMTP', 'Python',
+    'JavaScript', 'Java', 'GitHub', 'Slack', 'Redis', 'GraphQL', 'Linux',
+    'Nginx', 'Git', 'AWS', 'JWT', 'Agile', 'JIRA', 'SQL', 'HTML5', 'CSS3',
+    'Pydantic', 'third-party APIs', 'third-party API', 'debugging', 'ELK'
+];
+
+// Escape, then wrap known tech terms in <strong> using a single pass so
+// terms can never end up nested (e.g. SQLAlchemy inside SQLAlchemy 2.0).
+function highlightTech(text) {
+    const escaped = escapeHTML(text);
+    const alternatives = TECH_TERMS
+        .slice()
+        .sort((a, b) => b.length - a.length)   // longest first = longest match wins
+        .map(t => escapeHTML(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    if (!alternatives.length) return escaped;
+    return escaped.replace(new RegExp('(' + alternatives.join('|') + ')', 'gi'), '<strong>$1</strong>');
+}
+
+// Experience timeline: drives the rail fill as the section scrolls.
+// Re-runnable, so it can be called again after the list is re-rendered.
+let experienceRailBound = false;
+function initExperienceTimeline() {
+    initExperienceReveal();
+
+    const timeline = document.querySelector('.experience-timeline');
+    const rail = timeline && timeline.querySelector('.timeline-rail');
+    if (!timeline || !rail) return;
+
+    const update = () => {
+        const rect = timeline.getBoundingClientRect();
+        // How far the viewport has travelled through the timeline
+        const anchor = window.innerHeight * 0.55;
+        const progress = (anchor - rect.top) / Math.max(rect.height, 1);
+        const pct = Math.min(100, Math.max(0, progress * 100));
+        rail.style.setProperty('--rail-progress', pct.toFixed(2) + '%');
+    };
+
+    update();
+
+    if (experienceRailBound) return;
+    experienceRailBound = true;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { update(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    // The rail height depends on rendered card sizes, so refresh once settled
+    window.addEventListener('load', update);
+}
+
+
+// ============================================================
 // PAGE LOADING SCREEN - runs immediately before DOM ready
 // ============================================================
 (function () {
@@ -506,7 +612,8 @@
     `;
     document.head.appendChild(revealStyle);
 
-    document.querySelectorAll('.job-item').forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = `${i * 0.1}s`; });
+    // Experience timeline (rail fill + card reveal); see initExperienceTimeline
+    initExperienceTimeline();
     document.querySelectorAll('.skill-category,.certificate-item,.education-item,.project-card').forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = `${(i % 3) * 0.12}s`; });
     document.querySelectorAll('.about-content .column.left,.contact-content .column.left').forEach(el => el.classList.add('reveal-left'));
     document.querySelectorAll('.about-content .column.right,.contact-content .column.right').forEach(el => el.classList.add('reveal-right'));
@@ -927,24 +1034,97 @@ $(document).ready(function() {
             if (resumeLink) resumeLink.href = data.resumePdf;
         }
 
-        // ─── Update Experience Section ───
+        // ─── Update Experience Section (timeline design) ───
         if (data.experience && data.experience.length > 0) {
+            const timeline = document.querySelector('.experience-timeline');
             const expList = document.querySelector('.experience-list');
-            if (expList) {
-                expList.innerHTML = data.experience.map(exp => `
-                    <div class="job-item">
-                        <div class="company-logo">
-                            <img src="${exp.logo}" alt="${exp.company}" onerror="this.style.display='none'">
+            if (expList && timeline) {
+                // Rebuild the rail so it survives a re-render
+                if (!timeline.querySelector('.timeline-rail')) {
+                    const rail = document.createElement('span');
+                    rail.className = 'timeline-rail';
+                    rail.setAttribute('aria-hidden', 'true');
+                    timeline.insertBefore(rail, expList);
+                }
+
+                const esc = escapeHTML;
+
+                // Split a comma-separated skills string into chips, but keep
+                // parenthesised groups (e.g. "AWS (EC2, S3, RDS)") as one chip.
+                const splitSkills = (raw) => {
+                    const parts = [];
+                    let buf = '', depth = 0;
+                    String(raw || '').split(',').forEach(seg => {
+                        for (const ch of seg) {
+                            if (ch === '(') depth++;
+                            else if (ch === ')') depth = Math.max(0, depth - 1);
+                        }
+                        if (depth > 0 && seg.trim() !== '') {
+                            buf += (buf ? ',' : '') + seg.trim();
+                        } else {
+                            if (buf) { parts.push(buf); buf = ''; }
+                            const t = seg.trim().replace(/\.$/, '');
+                            if (t) parts.push(t);
+                        }
+                    });
+                    if (buf) parts.push(buf);
+                    return parts;
+                };
+
+                expList.innerHTML = data.experience.map(exp => {
+                    const isCurrent = /present|current|ongoing/i.test(exp.duration || '');
+                    const isInternship = /intern/i.test(exp.type || '') || /intern/i.test(exp.title || '');
+                    const chips = splitSkills(exp.skills);
+                    const highlights = Array.isArray(exp.highlights) ? exp.highlights : [];
+
+                    const badge = isCurrent
+                        ? '<span class="job-badge"><i class="fas fa-circle"></i>Current</span>'
+                        : (isInternship ? '<span class="job-badge internship"><i class="fas fa-graduation-cap"></i>Internship</span>' : '');
+
+                    const meta = [
+                        exp.duration ? `<li><span class="duration">${esc(exp.duration)}</span></li>` : '',
+                        exp.location ? `<li><i class="fas fa-map-marker-alt"></i><span class="location">${esc(exp.location)}</span></li>` : '',
+                        exp.workMode ? `<li><i class="fas fa-laptop-code"></i><span>${esc(exp.workMode)}</span></li>` : '',
+                        exp.type ? `<li><i class="fas fa-briefcase"></i><span>${esc(exp.type)}</span></li>` : ''
+                    ].filter(Boolean).join('');
+
+                    const highlightsHtml = highlights.length
+                        ? `<ul class="job-highlights">${highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>`
+                        : '';
+
+                    const skillsHtml = chips.length
+                        ? `<div class="job-skills">
+                                <span class="job-skills-label"><i class="fas fa-code"></i> Tech Stack</span>
+                                <div class="skill-chips">${chips.map(c => `<span>${esc(c)}</span>`).join('')}</div>
+                            </div>`
+                        : '';
+
+                    const logoHtml = exp.logo
+                        ? `<img src="${esc(exp.logo)}" alt="${esc(exp.company || '')}" onerror="this.style.display='none'">`
+                        : `<i class="fas fa-building"></i>`;
+
+                    return `
+                    <article class="job-item${isCurrent ? ' is-current' : ''}">
+                        <span class="timeline-node" aria-hidden="true"><i class="fas ${isInternship ? 'fa-graduation-cap' : 'fa-briefcase'}"></i></span>
+                        <div class="job-card">
+                            <div class="job-head">
+                                <div class="company-logo">${logoHtml}</div>
+                                <div class="job-headings">
+                                    <div class="job-head-top">
+                                        <h3 class="job-title">${esc(exp.title || '')}</h3>
+                                        ${badge}
+                                    </div>
+                                    <p class="company-name">${esc(exp.company || '')}</p>
+                                </div>
+                            </div>
+                            <ul class="job-meta">${meta}</ul>
+                            ${highlightsHtml}
+                            ${skillsHtml}
                         </div>
-                        <div class="job-info">
-                            <h3 class="job-title">${exp.title}</h3>
-                            <p class="company-name"><b>${exp.company} - ${exp.type}</b></p>
-                            <p class="duration">${exp.duration}</p>
-                            <p class="location">${exp.location} - ${exp.workMode}</p>
-                            <p class="skills"><b>Skills: </b>${exp.skills}</p>
-                        </div>
-                    </div>
-                `).join('');
+                    </article>`;
+                }).join('');
+
+                if (typeof initExperienceTimeline === 'function') initExperienceTimeline();
             }
         }
 
@@ -958,7 +1138,7 @@ $(document).ready(function() {
             const highlightsList = document.querySelector('.ai-summary-list');
             if (highlightsList && data.about.highlights) {
                 highlightsList.innerHTML = data.about.highlights.map(h =>
-                    `<li><i class="fas fa-bolt"></i> <span>${h}</span></li>`
+                    `<li><i class="fas fa-bolt"></i> <span>${highlightTech(h)}</span></li>`
                 ).join('');
             }
 
@@ -1032,7 +1212,7 @@ $(document).ready(function() {
                             <i class="${cat.icon}"></i>
                             <h3>${cat.title}</h3>
                             <ul class="skill-list">
-                                ${cat.items.map(s => `<li>${typeof s === 'string' ? s : (s.name || '')}</li>`).join('')}
+                                ${cat.items.map(s => `<li>${escapeHTML(typeof s === 'string' ? s : (s.name || ''))}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
