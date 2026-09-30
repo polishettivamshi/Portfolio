@@ -245,6 +245,8 @@ function markDirty() {
 function populateAllFields() {
     document.getElementById('field-name').value = portfolioData.name || '';
     document.getElementById('field-designation').value = portfolioData.designation || '';
+    document.getElementById('field-valueprop').value = portfolioData.hero?.valueProp || '';
+    document.getElementById('field-herotech').value = (portfolioData.hero?.tech || []).join('\n');
     document.getElementById('field-tagline').value = portfolioData.about?.tagline || '';
     document.getElementById('field-highlights').value = (portfolioData.about?.highlights || []).join('\n');
     renderStats();
@@ -266,6 +268,10 @@ function populateAllFields() {
 function collectFormData() {
     portfolioData.name = document.getElementById('field-name').value;
     portfolioData.designation = document.getElementById('field-designation').value;
+    if (!portfolioData.hero) portfolioData.hero = {};
+    portfolioData.hero.valueProp = document.getElementById('field-valueprop').value.trim();
+    portfolioData.hero.tech = document.getElementById('field-herotech').value
+        .split('\n').map(s => s.trim()).filter(Boolean);
     if (!portfolioData.about) portfolioData.about = {};
     portfolioData.about.tagline = document.getElementById('field-tagline').value;
     portfolioData.about.highlights = document.getElementById('field-highlights').value.split('\n').filter(s => s.trim());

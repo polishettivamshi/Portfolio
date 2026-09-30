@@ -1,6 +1,20 @@
 {
   "name": "Vamshi Polishetti",
   "designation": "Python Developer",
+  "hero": {
+    "valueProp": "Backend engineer building production REST APIs, data models and cloud infrastructure with Python, FastAPI, SQLAlchemy and AWS.",
+    "tech": [
+      "Python",
+      "FastAPI",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "MySQL",
+      "AWS",
+      "Docker",
+      "RabbitMQ",
+      "Elasticsearch"
+    ]
+  },
   "about": {
     "tagline": "Python Developer",
     "highlights": [
@@ -20,33 +34,93 @@
     "stats": [
       {
         "icon": "fas fa-tasks",
-        "label": "JIRA Issues",
+        "label": "JIRA Issues Resolved",
         "number": "1500+"
       },
       {
-        "icon": "fas fa-code",
-        "label": "Major API Projects",
-        "number": "2"
+        "icon": "fas fa-rocket",
+        "label": "Projects",
+        "number": "10+"
       },
       {
-        "icon": "fas fa-cloud",
-        "label": "AWS Services",
-        "number": "9"
+        "icon": "fas fa-smile",
+        "label": "Satisfaction",
+        "number": "97%"
+      },
+      {
+        "icon": "fas fa-briefcase",
+        "label": "Years Exp",
+        "number": "2.9+"
+      },
+      {
+        "icon": "fas fa-code",
+        "label": "API Endpoints",
+        "number": "1500+"
+      },
+      {
+        "icon": "fas fa-layer-group",
+        "label": "Technologies",
+        "number": "15+"
+      },
+      {
+        "icon": "fas fa-code-branch",
+        "label": "Git Commits",
+        "number": "1,000+"
+      },
+      {
+        "icon": "fas fa-bolt",
+        "label": "Query Optimization",
+        "number": "97%"
+      },
+      {
+        "icon": "fas fa-shield-alt",
+        "label": "Test Coverage",
+        "number": "95%+"
+      },
+      {
+        "icon": "fas fa-sync-alt",
+        "label": "Automation Success",
+        "number": "98%"
+      },
+      {
+        "icon": "fas fa-cloud-upload-alt",
+        "label": "Deployments",
+        "number": "30+"
+      },
+      {
+        "icon": "fas fa-cogs",
+        "label": "Enterprise Modules",
+        "number": "10+"
+      },
+      {
+        "icon": "fas fa-network-wired",
+        "label": "Integrations",
+        "number": "20+"
+      },
+      {
+        "icon": "fas fa-server",
+        "label": "System Uptime",
+        "number": "99.9%"
+      },
+      {
+        "icon": "fas fa-bug",
+        "label": "Bug Reduction",
+        "number": "95%"
+      },
+      {
+        "icon": "fas fa-stopwatch",
+        "label": "Faster Response",
+        "number": "97%"
       },
       {
         "icon": "fas fa-database",
-        "label": "Databases",
-        "number": "3"
+        "label": "Records Processed",
+        "number": "1M+"
       },
       {
-        "icon": "fas fa-graduation-cap",
-        "label": "Internships",
-        "number": "2"
-      },
-      {
-        "icon": "fas fa-rocket",
-        "label": "Projects Delivered",
-        "number": "10+"
+        "icon": "fas fa-users",
+        "label": "Users Served",
+        "number": "10K+"
       }
     ]
   },
@@ -271,11 +345,6 @@
       "duration": "Mar 2026 - Present",
       "location": "Hyderabad, Telangana, India",
       "workMode": "On-site",
-      "highlights": [
-        "Built and shipped production REST APIs with FastAPI, SQLAlchemy 2.0 and Alembic migrations.",
-        "Implemented JWT authentication with RBAC, bcrypt/Passlib hashing and audit logging.",
-        "Integrated APScheduler jobs, SMTP email workflows and third-party API integrations."
-      ],
       "skills": "Python 3.10+, FastAPI, SQLAlchemy 2.0, Alembic, Pydantic v2, MySQL, JWT Authentication, RBAC (Role-Based Access Control), bcrypt, Passlib, APScheduler, SMTP Email Integration, REST API Development, Third-Party API Integration, Database Design & Migrations, Audit Logging, API Security, Code Refactoring, Debugging & Troubleshooting, Git, GitHub."
     },
     {
@@ -286,12 +355,6 @@
       "duration": "Feb 2024 - Mar 2026",
       "location": "Hyderabad, Telangana, India",
       "workMode": "On-site",
-      "highlights": [
-        "Delivered two major API projects powering the CStoreiQ back-office platform and live data integrations.",
-        "Resolved 1500+ JIRA issues spanning critical bugs, feature builds and performance tuning.",
-        "Built asynchronous workflows with RabbitMQ and integrated Elasticsearch for search, logging and monitoring.",
-        "Deployed and maintained services on AWS (EC2, S3, Lambda, RDS, SQS/SNS) with SQL Server and PostgreSQL data layers."
-      ],
       "skills": "Python, FastAPI, Flask, SQLAlchemy ORM Models, JWT, API-KEY, Microsoft SQL Server, PostgreSQL, Git, Bitbucket, Elasticsearch, Docker (Basic), RabbitMQ, AWS (EC2, S3, IAM, EventBridge, Lambda, SQS, SNS, RDS, CloudWatch), Agile Methodologies"
     },
     {
@@ -302,10 +365,6 @@
       "duration": "Jan 2024 - Feb 2024",
       "location": "Hyderabad, Telangana, India",
       "workMode": "On-site",
-      "highlights": [
-        "Built Python-based services and automation utilities for internal tooling.",
-        "Worked with Grafana, Prometheus and the Elastic Stack (ELK) for monitoring and log analysis."
-      ],
       "skills": "Python, Grafana, Git, Prometheus, Postman API, MySQL, Node.js, Elastic Stack (ELK)"
     },
     {
@@ -316,11 +375,6 @@
       "duration": "Jun 2023 - Jul 2023",
       "location": "Hyderabad, Telangana, India",
       "workMode": "Remote",
-      "highlights": [
-        "Developed desktop applications using Java Swing and Core Java.",
-        "Managed relational data with MySQL and SQL database administration tasks.",
-        "Contributed to web application development during a fully remote internship."
-      ],
       "skills": "Java Swing, SQL Database Administration, MySQL, Core Java, Web Application Development"
     }
   ],

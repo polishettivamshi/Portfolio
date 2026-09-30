@@ -39,6 +39,12 @@ function initExperienceReveal() {
     });
 }
 
+// A bare "github.com/<user>" URL is a profile, not a repository. Rendering it
+// with a plain "GitHub" label implies a repo exists, so label it honestly.
+function isProfileOnlyRepo(url) {
+    return /^https?:\/\/(www\.)?github\.com\/[^/]+\/?(\?.*)?$/i.test(String(url || '').trim());
+}
+
 // Technologies to emphasise in the About summary. The portfolio JSON stores
 // plain text (so the admin CMS textarea stays clean), so the bold markup the
 // static HTML has is re-applied here at render time. This keeps the
@@ -598,6 +604,10 @@ function initExperienceTimeline() {
     document.head.appendChild(typingStyle);
 
 
+    // Keep the footer copyright year current without editing the markup
+    const yearEl = document.getElementById('copyright-year');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
     // ============================================================
     // SCROLL REVEAL
     // ============================================================
@@ -1023,8 +1033,18 @@ $(document).ready(function() {
         if (text2 && data.name) text2.textContent = data.name;
 
         // ─── Update Home Section ───
-        const typing = document.querySelector('.typing');
-        if (typing && data.designation) {
+        if (data.hero) {
+            const valueProp = document.querySelector('.home-value-prop');
+            if (valueProp && data.hero.valueProp) valueProp.textContent = data.hero.valueProp;
+
+            const techRow = document.querySelector('.home-tech');
+            if (techRow && Array.isArray(data.hero.tech) && data.hero.tech.length) {
+                techRow.innerHTML = data.hero.tech
+                    .map(t => `<span>${escapeHTML(t)}</span>`).join('');
+            }
+        }
+
+        if (data.designation) {
             // The typing animation will use the new data
         }
 
@@ -1184,7 +1204,7 @@ $(document).ready(function() {
                                 </div>
                                 <div class="project-actions">
                                     ${proj.liveUrl ? `<a class="project-btn demo" href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer"><i class="fas fa-rocket"></i> Live Demo</a>` : ''}
-                                    ${proj.repoUrl ? `<a class="project-btn" href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>` : ''}
+                                    ${proj.repoUrl ? `<a class="project-btn" href="${escapeHTML(proj.repoUrl)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> ${isProfileOnlyRepo(proj.repoUrl) ? 'GitHub Profile' : 'GitHub'}</a>` : ''}
                                     ${proj.description && proj.description.length > 1 ? `<button type="button" class="project-btn details-toggle">Details <i class="fas fa-chevron-down"></i></button>` : ''}
                                 </div>
                                 ${proj.description && proj.description.length > 1 ? `
