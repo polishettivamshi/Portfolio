@@ -13,6 +13,7 @@
       "API Security",
       "JWT Authentication",
       "AES Encryption",
+      "Role-based access control (RBAC)",
       "Third-Party API Integration",
       "Alembic Migrations",
       "Workflow Automation",
