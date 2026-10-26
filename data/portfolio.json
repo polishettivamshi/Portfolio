@@ -2,17 +2,24 @@
   "name": "Vamshi Polishetti",
   "designation": "Python Developer",
   "hero": {
-    "valueProp": "Backend engineer building production REST APIs, data models and cloud infrastructure with Python, FastAPI, SQLAlchemy and AWS.",
+    "valueProp": "Backend engineer building secure, scalable REST APIs, database architectures and workflow automation solutions using Python, FastAPI, SQLAlchemy and AWS.",
     "tech": [
       "Python",
       "FastAPI",
       "SQLAlchemy",
       "PostgreSQL",
       "MySQL",
-      "AWS",
-      "Docker",
+      "Database Design",
+      "API Security",
+      "JWT Authentication",
+      "AES Encryption",
+      "Third-Party API Integration",
+      "Alembic Migrations",
+      "Workflow Automation",
+      "Background Jobs & Scheduling",
       "RabbitMQ",
-      "Elasticsearch"
+      "Docker",
+      "AWS"
     ]
   },
   "about": {
