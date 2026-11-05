@@ -137,8 +137,8 @@ section {
     display: flex;
     align-items: center;
     color: white;
-    text-align: center;
-    justify-content: center;
+    text-align: left;
+    justify-content: flex-start;
 }
 
 /* Mobile: Use mobile-specific background image */
@@ -157,7 +157,8 @@ section {
 }
 
 .home .max-width {
-    margin: 0 auto;
+    margin: 0;
+    padding-left: 250px;
 }
 
 .home-content {
@@ -165,24 +166,27 @@ section {
 }
 
 .text-1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.7rem;
+    margin-bottom: 2px;
     color: #00D1D1;
+    text-align: center;
 }
 
 .text-2 {
     font-size: 4rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     background: linear-gradient(45deg, #00D1D1, #00a8a8);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-align: center;
 }
 
 .text-3 {
     font-size: 2rem;
-    margin-bottom: 18px;
+    margin-bottom: 2px;
+    text-align: center;
 }
 
 .typing, .typing-2 {
