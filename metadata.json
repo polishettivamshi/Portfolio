@@ -1,0 +1,8 @@
+{
+  "name": "Vamshi Polishetti Portfolio",
+  "description": "Portfolio website of Vamshi Polishetti, Python Developer specializing in FastAPI, Backend Engineering, and AWS.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
